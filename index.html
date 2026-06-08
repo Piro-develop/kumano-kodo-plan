@@ -507,7 +507,7 @@
                 <!-- トラブル選択フォーム -->
                 <div class="bg-tiffany-light/60 p-4 rounded-2xl border-2 border-tiffany-light space-y-4 mb-6">
                     <h3 class="font-bold text-xs text-tiffany-deep flex items-center">
-                        <i class="fa-solid fa-sliders mr-2 text-tiffany-accent"></i> いま、どんなトラブルが起きてますか？
+                        <i class="fa-solid fa-sliders mr-2 text-tiffany-accent"></i> 今、AIに何を相談したいですか？
                     </h3>
                     
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -524,22 +524,24 @@
                             </select>
                         </div>
 
-                        <!-- トラブルの種類 -->
+                        <!-- 相談の種類 -->
                         <div>
-                            <label class="block text-[11px] font-bold text-tiffany-deep mb-1">トラブルの種類 😭</label>
+                            <label class="block text-[11px] font-bold text-tiffany-deep mb-1">相談したいこと 💬</label>
                             <select id="trouble-type" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
-                                <option value="rain-light">雨が降ってきた（傘があれば動ける小雨〜中雨）</option>
-                                <option value="rain-heavy">かなり激しい雨（外歩きが危険で、これ以上濡れたくない）</option>
-                                <option value="sick-mild">ちょっと体がダルい、足が痛くなってきて歩くのが辛い</option>
-                                <option value="delay">予定が遅れている、乗る予定のバスに乗り遅れそう</option>
-                                <option value="other">上記以外</option>
-                            </select>
+                               <option value="souvenir">お土産屋さん・名物を探したい</option>
+                               <option value="store">夜まで開いているコンビニ・スーパー・薬局を探したい</option>
+                               <option value="food">近くで食事できる場所を探したい</option>
+                               <option value="cafe">休憩できるカフェ・雨宿りできる場所を探したい</option>
+                               <option value="sightseeing">今から行ける観光スポットを探したい</option>
+                               <option value="route">移動ルート・所要時間・交通手段を相談したい</option>
+                               <option value="other">上記以外</option>
+                               </select>
                         </div>
                     </div>
 
                     <!-- 補足説明（任意） -->
                     <div>
-                        <label class="block text-[11px] font-bold text-tiffany-deep mb-1">詳しい状況や現在地を教えて（自由入力・任意） ✏️</label>
+                        <label class="block text-[11px] font-bold text-tiffany-deep mb-1">詳しい相談内容・現在地・条件を入力してください（任意） ✏️</label>
                         <input type="text" id="trouble-details" placeholder="例: いま伏拝茶屋にいます。足がかなりピキピキしてきました…" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
                     </div>
 
@@ -552,7 +554,7 @@
                 <div id="ai-answer-container" class="hidden border-4 border-dashed border-tiffany-main rounded-2xl p-5 bg-tiffany-light/30 relative transition-all duration-500">
                     <span class="absolute top-2 right-3 text-[9px] font-black text-tiffany-accent tracking-widest"><i class="fa-solid fa-sparkles"></i> tiffany_blue_advisor</span>
                     <h4 class="font-pop font-bold text-tiffany-deep border-b border-tiffany-light pb-2 mb-3 flex items-center text-sm">
-                        <i class="fa-solid fa-lightbulb text-tiffany-accent mr-2 animate-bounce"></i> AIのハピネスお助けプラン：
+                        <i class="fa-solid fa-lightbulb text-tiffany-accent mr-2 animate-bounce"></i> 作成した相談内容：
                     </h4>
                     <div id="ai-answer-text" class="text-xs text-tiffany-deep leading-relaxed space-y-3">
                         <!-- ここにJSでポップなアドバイスが挿入されます -->
@@ -930,13 +932,14 @@
         }
 
         // AIに貼り付ける相談文を作成する処理
+// AIに貼り付ける旅先相談文を作成する処理
 function generateAlternative() {
     const daySelect = document.getElementById('trouble-day');
     const typeSelect = document.getElementById('trouble-type');
     const detailsInput = document.getElementById('trouble-details');
 
     const timingText = daySelect.options[daySelect.selectedIndex].text;
-    const troubleText = typeSelect.options[typeSelect.selectedIndex].text;
+    const requestText = typeSelect.options[typeSelect.selectedIndex].text;
     const details = detailsInput.value.trim();
 
     const answerContainer = document.getElementById('ai-answer-container');
@@ -945,16 +948,26 @@ function generateAlternative() {
 
     let autoAdvice = '';
 
-    if (typeSelect.value === 'rain-light') {
-        autoAdvice = '小雨〜中雨のため、屋外行動は完全中止ではなく、傘・レインコート・滑りにくい靴を前提に、短時間行動へ切り替えるのがよさそうです。石畳や階段がある場所では転倒リスクを優先して判断してください。';
+    if (typeSelect.value === 'souvenir') {
+        autoAdvice = 'お土産探しでは、現在地から近い店舗、営業時間、駐車場の有無、熊野らしい名物、移動予定への影響を確認する必要があります。';
+    } else if (typeSelect.value === 'store') {
+        autoAdvice = '夜まで開いている店を探す場合は、現在地、営業時間、徒歩・車での所要時間、閉店時刻、駐車場、必要な買い物内容を優先して確認する必要があります。';
+    } else if (typeSelect.value === 'food') {
+        autoAdvice = '食事場所を探す場合は、現在地、営業時間、予約要否、駐車場、名物料理、次の予定に間に合うかを基準に候補を絞る必要があります。';
+    } else if (typeSelect.value === 'cafe') {
+        autoAdvice = '休憩場所を探す場合は、現在地からの近さ、座れるか、雨を避けられるか、営業時間、駐車場、次の移動への影響を確認する必要があります。';
+    } else if (typeSelect.value === 'sightseeing') {
+        autoAdvice = '今から行ける観光地を探す場合は、現在時刻、移動時間、閉門・閉館時間、天候、体力、駐車場、次の予定への影響を踏まえる必要があります。';
+    } else if (typeSelect.value === 'route') {
+        autoAdvice = '移動ルートを相談する場合は、現在地、目的地、移動手段、所要時間、道路状況、駐車場、次の予約時間を整理する必要があります。';
     } else if (typeSelect.value === 'rain-heavy') {
-        autoAdvice = '激しい雨の場合は、熊野古道歩きや長い屋外参拝は中止または短縮し、車移動・屋内施設・温泉・食事処中心の代替プランに切り替えるのが安全です。川沿い・山道・石段は無理をしない判断が必要です。';
+        autoAdvice = '雨が強い場合は、屋外行動や石段・山道を避け、車移動・屋内施設・温泉・食事処中心に切り替えるのが安全です。';
     } else if (typeSelect.value === 'sick-mild') {
-        autoAdvice = '体調不良や足の痛みがある場合は、予定消化よりも休憩・離脱・短縮を優先してください。歩行距離を減らし、近くの休憩所・茶屋・駐車場・タクシー・宿への移動を検討するのが安全です。';
+        autoAdvice = '体調不良や足の痛みがある場合は、予定消化よりも休憩・短縮・離脱を優先し、歩行距離を減らす判断が必要です。';
     } else if (typeSelect.value === 'delay') {
-        autoAdvice = '予定が遅れている場合は、優先度の低い立ち寄りを削り、宿・レンタカー返却・電車・バスなど時間制約の強い予定を優先してください。次の移動手段に間に合うかを基準に再計画する必要があります。';
+        autoAdvice = '予定が遅れている場合は、優先度の低い立ち寄りを削り、宿・電車・バス・レンタカー返却など時間制約の強い予定を優先する必要があります。';
     } else {
-        autoAdvice = '状況が選択肢に当てはまらないため、現在地・天候・体調・交通手段・次の予約時間を整理した上で、安全優先で代替案を検討する必要があります。';
+        autoAdvice = '選択肢に当てはまらない相談のため、現在地、現在時刻、目的、条件、次の予定を整理したうえで、現実的な候補を出してもらう必要があります。';
     }
 
     const detailText = details ? details : '特になし';
@@ -964,12 +977,12 @@ function generateAlternative() {
             <i class="fa-solid fa-copy mr-2"></i>相談文を作成しました
         </p>
         <p class="text-xs mt-2">
-            下の黒い枠内に、選択内容・自由入力・自動整理した注意点を反映した相談文を作成しました。
+            下の黒い枠内に、選択内容・自由入力・自動整理した確認ポイントを反映しました。
         </p>
         <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-3 shadow-xs text-xs">
             <p><strong class="text-tiffany-accent">現在のタイミング：</strong><br>${timingText}</p>
-            <p class="mt-2"><strong class="text-tiffany-accent">トラブルの種類：</strong><br>${troubleText}</p>
-            <p class="mt-2"><strong class="text-tiffany-accent">自由入力：</strong><br>${detailText}</p>
+            <p class="mt-2"><strong class="text-tiffany-accent">相談したいこと：</strong><br>${requestText}</p>
+            <p class="mt-2"><strong class="text-tiffany-accent">詳しい相談内容・条件：</strong><br>${detailText}</p>
             <p class="mt-2"><strong class="text-tiffany-accent">自動整理メモ：</strong><br>${autoAdvice}</p>
         </div>
         <p class="text-xs font-bold">
@@ -980,7 +993,7 @@ function generateAlternative() {
     answerContainer.classList.remove('hidden');
 
     const customPrompt = `現在、熊野2泊3日旅行の途中です。
-以下のしおり（ベースプラン）を前提に、現在の状況に合わせた安全で現実的な代替行動を提案してください。
+以下のしおり（ベースプラン）を前提に、現在の状況に合わせて、旅行中の相談に答えてください。
 
 【しおり情報】
 1日目：
@@ -1007,25 +1020,25 @@ function generateAlternative() {
 【現在のタイミング】
 ${timingText}
 
-【発生しているトラブル】
-${troubleText}
+【相談したいこと】
+${requestText}
 
-【詳しい状況・現在地】
+【詳しい相談内容・現在地・条件】
 ${detailText}
 
-【このしおり内で自動整理された注意点】
+【このしおり内で自動整理された確認ポイント】
 ${autoAdvice}
 
-【AIへの相談】
-上記の状況を踏まえて、今からどう動くのが最も安全で、かつ旅行の満足度をできるだけ落とさないかを教えてください。
+【AIへの依頼】
+上記の状況を踏まえて、今の旅行中に最も現実的で使いやすい答えを出してください。
 
-回答では、以下を必ず含めてください。
-1. まず最優先でやること
-2. 予定を続行してよいか、中止・短縮すべきか
-3. 具体的な次の行動手順
-4. 代替プラン
-5. 注意点
-6. 移動・休憩・食事・宿・交通手段に関する現実的な判断`;
+回答では、以下をできるだけ含めてください。
+1. まず確認すべきこと
+2. 現在地から近い候補・探し方
+3. 営業時間・移動時間・駐車場などの注意点
+4. しおり全体の予定への影響
+5. 無理のない次の行動手順
+6. 必要であれば、検索するときの具体的なキーワード`;
 
     promptArea.textContent = customPrompt;
 
