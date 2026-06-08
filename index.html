@@ -929,38 +929,109 @@
             renderUserPackingItems();
         }
 
-        // ローカルAIアドバイザーのシミュレーションロジック（配色＆ポップに最適化）
-</script>
+        // AIに貼り付ける相談文を作成する処理
+function generateAlternative() {
+    const daySelect = document.getElementById('trouble-day');
+    const typeSelect = document.getElementById('trouble-type');
+    const detailsInput = document.getElementById('trouble-details');
 
+    const timingText = daySelect.options[daySelect.selectedIndex].text;
+    const troubleText = typeSelect.options[typeSelect.selectedIndex].text;
+    const details = detailsInput.value.trim();
 
-            // HTMLに挿入して表示
-            answerText.innerHTML = recommendation;
-            answerContainer.classList.remove('hidden');
+    const answerContainer = document.getElementById('ai-answer-container');
+    const answerText = document.getElementById('ai-answer-text');
+    const promptArea = document.getElementById('prompt-area');
 
-            // プロンプトコピーエリアのカスタマイズ
-            const promptArea = document.getElementById('prompt-area');
-            const customPrompt = `現在、熊野2泊3日旅行の途中で、以下のしおり（ベースプラン）を遂行中です。
+    let autoAdvice = '';
+
+    if (typeSelect.value === 'rain-light') {
+        autoAdvice = '小雨〜中雨のため、屋外行動は完全中止ではなく、傘・レインコート・滑りにくい靴を前提に、短時間行動へ切り替えるのがよさそうです。石畳や階段がある場所では転倒リスクを優先して判断してください。';
+    } else if (typeSelect.value === 'rain-heavy') {
+        autoAdvice = '激しい雨の場合は、熊野古道歩きや長い屋外参拝は中止または短縮し、車移動・屋内施設・温泉・食事処中心の代替プランに切り替えるのが安全です。川沿い・山道・石段は無理をしない判断が必要です。';
+    } else if (typeSelect.value === 'sick-mild') {
+        autoAdvice = '体調不良や足の痛みがある場合は、予定消化よりも休憩・離脱・短縮を優先してください。歩行距離を減らし、近くの休憩所・茶屋・駐車場・タクシー・宿への移動を検討するのが安全です。';
+    } else if (typeSelect.value === 'delay') {
+        autoAdvice = '予定が遅れている場合は、優先度の低い立ち寄りを削り、宿・レンタカー返却・電車・バスなど時間制約の強い予定を優先してください。次の移動手段に間に合うかを基準に再計画する必要があります。';
+    } else {
+        autoAdvice = '状況が選択肢に当てはまらないため、現在地・天候・体調・交通手段・次の予約時間を整理した上で、安全優先で代替案を検討する必要があります。';
+    }
+
+    const detailText = details ? details : '特になし';
+
+    answerText.innerHTML = `
+        <p class="font-bold text-tiffany-accent text-sm">
+            <i class="fa-solid fa-copy mr-2"></i>相談文を作成しました
+        </p>
+        <p class="text-xs mt-2">
+            下の黒い枠内に、選択内容・自由入力・自動整理した注意点を反映した相談文を作成しました。
+        </p>
+        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-3 shadow-xs text-xs">
+            <p><strong class="text-tiffany-accent">現在のタイミング：</strong><br>${timingText}</p>
+            <p class="mt-2"><strong class="text-tiffany-accent">トラブルの種類：</strong><br>${troubleText}</p>
+            <p class="mt-2"><strong class="text-tiffany-accent">自由入力：</strong><br>${detailText}</p>
+            <p class="mt-2"><strong class="text-tiffany-accent">自動整理メモ：</strong><br>${autoAdvice}</p>
+        </div>
+        <p class="text-xs font-bold">
+            内容を確認して、下の「コピー」ボタンからChatGPT / Gemini / Claudeなどに貼り付けてください。
+        </p>
+    `;
+
+    answerContainer.classList.remove('hidden');
+
+    const customPrompt = `現在、熊野2泊3日旅行の途中です。
+以下のしおり（ベースプラン）を前提に、現在の状況に合わせた安全で現実的な代替行動を提案してください。
 
 【しおり情報】
-1日目: 13:47 新宮駅着、14:00 レンタカー、大斎原、本宮エリア泊
-2日目: 08:30 本宮駐車場 ➔ 08:40 バス ➔ 09:00 発心門王子〜本宮大社ウォーク（7km）、ランチ、13:00 車で那智の滝、14:15 那智の滝参拝、16:30 勝浦・ホテル浦島泊
-3日目: 09:30 出発、10:15 熊野速玉大社、11:30 レンタカー返却・新宮ランチ、午後帰宅
+1日目：
+13:47 新宮駅着
+14:00 レンタカー貸出
+15:00 大斎原参拝
+16:00以降 本宮周辺の温泉宿にチェックイン
 
-【現在の状況とトラブル】
-現在、旅行の「${promptTiming}」頃です。
-実は、以下のトラブルが発生して困っています。
-「${promptProblem} ${details ? details : ''}」
+2日目：
+08:20 本宮大社周辺に駐車
+08:40 バスで発心門王子へ移動
+09:00〜12:00 発心門王子〜熊野本宮大社ウォーク
+12:00 本宮大社参拝・周辺ランチ
+13:00 車で那智山へ移動
+14:15〜15:45 那智の滝・那智山散策
+16:30 勝浦港からホテル浦島へ移動
 
-【AIへの質問】
-このしおりの工程を大きく崩さずに、または最小限の変更で、今からどう動くのが最も安全で楽しめるか、次の具体的なステップを教えてください。周辺の安全な雨宿りスポット、短縮ルート、または代替プランの提案を求みます。`;
-            
-            promptArea.textContent = customPrompt;
+3日目：
+09:30 ホテル出発
+10:15〜11:15 熊野速玉大社参拝
+11:30 レンタカー返却・新宮ランチ
+午後 新宮駅から帰路へ
 
-            // スクロールして結果へ誘導
-            answerContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
+【現在のタイミング】
+${timingText}
 
-        // コピー機能（iframeの制限を考慮したフォールバック処理）
+【発生しているトラブル】
+${troubleText}
+
+【詳しい状況・現在地】
+${detailText}
+
+【このしおり内で自動整理された注意点】
+${autoAdvice}
+
+【AIへの相談】
+上記の状況を踏まえて、今からどう動くのが最も安全で、かつ旅行の満足度をできるだけ落とさないかを教えてください。
+
+回答では、以下を必ず含めてください。
+1. まず最優先でやること
+2. 予定を続行してよいか、中止・短縮すべきか
+3. 具体的な次の行動手順
+4. 代替プラン
+5. 注意点
+6. 移動・休憩・食事・宿・交通手段に関する現実的な判断`;
+
+    promptArea.textContent = customPrompt;
+
+    answerContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
         function copyToClipboard(containerId) {
             const text = document.getElementById(containerId).textContent;
             
