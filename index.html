@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>そうだ、熊野に行こう！フレキシブル旅のしおり</title>
+    <title>そうだ 熊野、行こう！旅のしおり</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" href="apple-touch-icon.png">
@@ -66,7 +66,7 @@
                 <i class="fa-solid fa-compass mr-1"></i> Flexible Planner
             </span>
             <h1 class="font-pop text-3xl md:text-4xl tracking-wider text-tiffany-yellow drop-shadow-md mb-2">
-                そうだ、熊野に行こう！
+                そうだ 熊野、行こう！
             </h1>
 
             <img
@@ -253,6 +253,21 @@
                         </div>
                     </div>
 
+                                        <!-- 行程 2-3b（カフェ組） -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>11:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-mug-hot mr-1"></i>カフェ組</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">カフェ組（先回り休憩） ☕</h3>
+                        <p class="text-xs text-gray-500 mt-1">疲れた組は、4.5km地点の「伏拝王子」から歩いてすぐの「伏拝口」バス停から路線バスに乗車し、一足先に本宮大社周辺へワープ！大社近くの「森のふくろう文庫」（古書に囲まれた落ち着いた読書空間）や、「cafe alma」（本格的な自家焙煎コーヒーやスイーツが楽しめるお店）などの素敵なカフェで、歩き組の到着をのんびり待ちながら足を休めます。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-3b" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-3b" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
                     <!-- 行程 2-4 -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
@@ -260,7 +275,7 @@
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>12:00</span>
                             <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>ごちそう</span>
                         </div>
-                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社参拝 ＆ 周辺ランチ 🍙</h3>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社参拝 ＆ ランチ@めはり寿司 🍙</h3>
                         <p class="text-xs text-gray-500 mt-1">ゴールの本宮大社にそのまま入り、檜皮葺の厳かな本殿を参拝。参拝した後は、門前町のカフェや食事処で名物の「めはり寿司」や美味しい「うどん」でお腹を満たしましょう！</p>
                         <div class="mt-2 flex items-center">
                             <input type="checkbox" id="check-2-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
@@ -751,7 +766,7 @@
     <!-- フッター -->
     <footer class="bg-gradient-to-tr from-tiffany-deep to-tiffany-dark text-tiffany-light py-8 text-center text-xs mt-10 rounded-t-[2rem]">
         <div class="max-w-4xl mx-auto px-4 space-y-2">
-            <p class="font-pop text-tiffany-yellow text-sm tracking-widest">そうだ、熊野に行こう！ 旅のしおり</p>
+            <p class="font-pop text-tiffany-yellow text-sm tracking-widest">そうだ 熊野、行こう！旅のしおり</p>
             <p class="font-bold">Made for Kumano Pilgrimage 2026. Keep Safe and Have a Nice Trip! 🧸</p>
         </div>
     </footer>
@@ -1019,7 +1034,7 @@
 08:20 本宮大社周辺に駐車
 08:40 バスで発心門王子へ移動
 09:00〜12:00 発心門王子〜熊野本宮大社ウォーク
-12:00 本宮大社参拝・周辺ランチ
+12:00 本宮大社参拝・ランチ@めはり寿司
 13:00 車で那智山へ移動
 14:15〜15:45 那智の滝・那智山散策
 16:30 勝浦港からホテル浦島へ移動
