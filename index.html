@@ -73,8 +73,8 @@
 />
 
             <p class="text-xs md:text-sm font-bold text-white/90 max-w-xl mx-auto bg-tiffany-navy/25 py-2 px-4 rounded-2xl inline-block mt-1">
-                2026年7月11日(金) 〜 7月13日(日) 2泊3日<br>
-                🧸 エスケープルート＆AIトラブル相談付き旅のしおり 🧸
+                2026年7月11日(土) 〜 7月13日(月) 2泊3日<br>
+                🧸 旅のしおり 🧸
             </p>
         </div>
         <!-- 装飾的なポップな下境界線 -->
@@ -516,9 +516,11 @@
                             <label class="block text-[11px] font-bold text-tiffany-deep mb-1">現在のタイミング ⏰</label>
                             <select id="trouble-day" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
                                 <option value="1">1日目(7/11)午後：新宮駅からレンタカーで本宮へ移動中</option>
+                                <option value="1-hotel">1日目(7/11)午後：本宮から宿へ移動中</option>
                                 <option value="2-morning">2日目(7/12)午前：古道ウォーク（発心門王子〜大社）開始前・歩き中</option>
                                 <option value="2-afternoon">2日目(7/12)午後：本宮 ➔ 那智滝 ➔ 勝浦ホテル浦島へ移動中</option>
                                 <option value="3">3日目(7/13)最終日：勝浦 ➔ 速玉大社 ➔ 新宮駅帰宅</option>
+                                <option value="other">上記以外</option>
                             </select>
                         </div>
 
@@ -530,6 +532,7 @@
                                 <option value="rain-heavy">かなり激しい雨（外歩きが危険で、これ以上濡れたくない）</option>
                                 <option value="sick-mild">ちょっと体がダルい、足が痛くなってきて歩くのが辛い</option>
                                 <option value="delay">予定が遅れている、乗る予定のバスに乗り遅れそう</option>
+                                <option value="other">上記以外</option>
                             </select>
                         </div>
                     </div>
@@ -541,7 +544,7 @@
                     </div>
 
                     <button onclick="generateAlternative()" class="w-full bg-tiffany-accent hover:bg-tiffany-accent/90 text-white font-black py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center text-sm">
-                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AI相談員にアイデアをもらう！
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AIに貼り付ける相談文を作成する
                     </button>
                 </div>
 
@@ -927,209 +930,8 @@
         }
 
         // ローカルAIアドバイザーのシミュレーションロジック（配色＆ポップに最適化）
-        function generateAlternative() {
-            const day = document.getElementById('trouble-day').value;
-            const type = document.getElementById('trouble-type').value;
-            const details = document.getElementById('trouble-details').value;
+</script>
 
-            const answerContainer = document.getElementById('ai-answer-container');
-            const answerText = document.getElementById('ai-answer-text');
-
-            let recommendation = "";
-            let promptTiming = "";
-            let promptProblem = "";
-
-            // シミュレーション意思決定ロジック
-            if (day === "1") {
-                promptTiming = "1日目（7/11）午後：新宮 ➔ 本宮エリアへ車移動中・到着時";
-                if (type.includes("rain")) {
-                    promptProblem = "雨が降っていて、大斎原での屋外参拝ができるか心配です。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-rain mr-2"></i>【本宮周辺：雨宿りカルチャープランにスイッチ！】</p>
-                        <p class="text-xs">大斎原は地面が土や芝生なので、雨がひどいと歩道に大きな水たまりができちゃいます。傘を差して歩くこともできますが、お洋服や靴が濡れて気分が下がっちゃうかも…</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>15:00の屋外大斎原の散歩はパスして、すぐ真横にあるお役立ち屋内施設<strong>「和歌山県世界遺産センター（熊野本宮館）」</strong>に車で直行します。</li>
-                                <li>ここはとっても綺麗で広々とした無料施設！熊野古道のヒストリー解説や、お勉強になるビデオコーナーで濡れずに学べます。</li>
-                                <li>16:00に予定通り宿へチェックイン。湯の峰温泉の名湯（つぼ湯など）をゆっくり楽しんで、お肌をすべすべにしちゃいましょう！</li>
-                            </ol>
-                        </div>
-                    `;
-                } else if (type === "sick-mild") {
-                    promptProblem = "長旅でちょっと体調がだるく、足が重いです。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-hand-holding-medical mr-2"></i>【直行＆早めの温泉セラピープランにチェンジ！】</p>
-                        <p class="text-xs">新宮駅から車で50分と移動が続いたため、体が疲れているのかも。明日は7kmのロングウォークですので、無理は絶対に禁物です！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>大斎原の参拝は歩くのをやめて車窓から大鳥居を眺めるだけにし、15:30には本宮周辺 of 温泉宿にチェックインしちゃいます。</li>
-                                <li>お宿に入ったら、水分をたくさん取って早めにお風呂にドボン。温まって血行を良くしましょう。</li>
-                                <li>20時にはお布団に入ってぐっすり眠り、翌朝の体調を見てウォークを本当にやるか判断するのが最善です！</li>
-                            </ol>
-                        </div>
-                    `;
-                } else {
-                    promptProblem = "レンタカー出発手続きなどで、時間が予定より遅れています。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-clock mr-2"></i>【大斎原は明日にまわし、直接お宿へ安全運転ドライブ！】</p>
-                        <p class="text-xs">レンタカー店舗での手続きなどで遅れてしまった場合、夕暮れに大斎原の参拝を急いで行うのはバタバタして勿体ないです。</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>1日目は大斎原に寄るのをあきらめて、本宮エリアのお宿へ直接向かいましょう（16:30〜17:00頃の到着が目安）。</li>
-                                <li>大斎原の参拝は、<strong>2日目の12:00（本宮大社にゴールしてランチをするとき）</strong>に立ち寄るか、<strong>3日目の出発前</strong>に組み込むのがとってもスムーズですよ！</li>
-                            </ol>
-                        </div>
-                    `;
-                }
-            } else if (day === "2-morning") {
-                promptTiming = "2日目（7/12）午前：古道ウォーク開始前・最中";
-                if (type.includes("rain")) {
-                    promptProblem = "雨が降ってきて、山道（発心門王子〜本宮大社）をハイキングするのが厳しそうです。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-showers-heavy mr-2"></i>【古道歩きは中止！雨の日ドライブ＆大社サクッと参拝プラン】</p>
-                        <p class="text-xs">雨の熊野古道は、有名な苔むした石畳がとってもツルツルと滑りやすくなります。特に下り基調のルートはケガや捻挫の危険が高まります。</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li><strong>08:40の路線バスでの移動とウォークを潔く中止します。</strong></li>
-                                <li>車で「熊野本宮大社」まで行き、隣の世界遺産センターに車を置きます。</li>
-                                <li>傘を差しながら、滑らないようにゆっくりと本宮大社の本殿（階段あり）のみをササッと参拝します。</li>
-                                <li>その後、お昼まで湯の峰温泉に車でドライブ。世界遺産の岩風呂「つぼ湯」を見に行ったり、足湯に浸かって濡れた足を温めるのがおすすめ！</li>
-                            </ol>
-                        </div>
-                    `;
-                } else if (type === "sick-mild") {
-                    promptProblem = "歩き始めてみましたが、足腰がだるく、7km全部歩くのがしんどいです。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-triangle-exclamation mr-2"></i>【4.5km地点の伏拝王子でワープ退避エスケープ！】</p>
-                        <p class="text-xs">なだらかなルートですが、7kmは体調が悪いと長くツラいものです。実はコース上に1箇所だけお助けポイントがあります！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>なんとか頑張って<strong>4.5km地点の「伏拝（ふしおがみ）王子」（伏拝茶屋）</strong>まで進んでください。</li>
-                                <li>伏拝茶屋で冷たい麦茶や美味しい梅干しを食べて休憩！</li>
-                                <li>これ以上無理だと思ったら、すぐ近くの車道まで歩いてタクシーを呼び出すか、近隣の「伏拝口」バス停から路線バスに乗って、ゴールの本宮大社へワープ移動しましょう！（本宮タクシー：0735-42-0050）</li>
-                            </ol>
-                        </div>
-                    `;
-                } else {
-                    promptProblem = "朝の準備がのんびりになってしまい、予定していた08:40のバスに乗り遅れました！";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-bus-simple mr-2"></i>【次のバスの検索 ＆ タクシーワープを検討しよう！】</p>
-                        <p class="text-xs">発心門王子行きのバスは本数が少ないので、1本逃すと大きなタイムロスになっちゃいます。</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>すぐに本宮大社前の案内所で「次の発心門王子行きバス」の時間をチェックします。</li>
-                                <li>もし次のバスまで1時間以上あく場合は、時間の節約のために本宮大社前からスタート地点（発心門王子）まで<strong>タクシー</strong>（約15分、3,000円弱）を使って向かっちゃいましょう！</li>
-                                <li>タクシー代はかかりますが、時間を丸ごと買って気持ちよく古道ウォークを開始できます。</li>
-                            </ol>
-                        </div>
-                    `;
-                }
-            } else if (day === "2-afternoon") {
-                promptTiming = "2日目（7/12）午後：那智・勝浦へ車で移動中";
-                if (type.includes("rain")) {
-                    promptProblem = "雨が強く、那智山や那智の滝を外歩きして観光するのが大変そうです。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-umbrella mr-2"></i>【階段歩きはパス！那智の滝をお手軽ショートカット参拝】</p>
-                        <p class="text-xs">那智大社へのお参りは約470段もの急な雨で濡れた石畳段を登る必要があり、とっても滑って危ないです。</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>那智大社への階段のぼりは一切やめて、車で直接「那智の滝（最寄の有料駐車場）」に向かいます。</li>
-                                <li>駐車場のすぐ近くの鳥居（お滝拝所）からのみ、傘をさして滝を見学。これなら車を降りてわずか徒歩2〜3分で大滝のダイナミックな姿をカメラに収められます！</li>
-                                <li>早めに勝浦港へ進み、16:00過ぎの送迎船に乗ってホテル浦島へチェックイン。館内のいろんな洞窟温泉をゆっくり湯巡りして、雨のビューを特等席から楽しむ方が圧倒的にハッピーです！</li>
-                            </ol>
-                        </div>
-                    `;
-                } else if (type === "sick-mild") {
-                    promptProblem = "午前に7km歩いたので、足腰が悲鳴を上げていて那智大社の石段470段を登る元気がありません。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-heart-pulse mr-2"></i>【那智山の防災裏道路を利用するか、滝だけの観光にチェンジ！】</p>
-                        <p class="text-xs">午前中のハイキングで、思った以上に足がガクガクしているのは自然なことです。決して無理に階段を上らないで！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>どうしても上の那智大社・青岸渡寺にお参りしたい場合、山麓からの徒歩階段を回避して、車で有料の<strong>「防災道路（通行料：約800円）」</strong>を通って本殿のすぐ真横の駐車場まで直接ワープする裏技を使いましょう。</li>
-                                <li>または大社参拝は潔くカットし、歩かずに至至近距離で見られる「那智の滝」のふもと散策だけにしておきます。</li>
-                                <li>ホテル浦島の名物風呂「忘帰洞」の波の音をききながら足を丁寧にセルフマッサージして、明日に備えてねぎらいましょう！</li>
-                            </ol>
-                        </div>
-                    `;
-                } else {
-                    promptProblem = "道が混んでいるなどの理由で、勝浦港に16:30に間に合わないかもしれません。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-hourglass-half mr-2"></i>【船は夜まで頻繁に運行しているので、焦らずのんびり進んで！】</p>
-                        <p class="text-xs">送迎船に遅れたら島に渡れない！なんて心配は一切いりません。命を最優先に安全運転を！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>勝浦港 ➔ ホテル浦島の送迎船は、16:30を過ぎても夜間まで頻繁にピストン往復していますので焦らなくて大丈夫。</li>
-                                <li>ただし、遅くなるとバイキングのご飯時間や、夜の広大な洞窟温泉での湯浴み時間が減ってしまうので、那智の滝の散策時間をコンパクトにして17:30までには勝浦港に到着するよう調整しましょう。</li>
-                            </ol>
-                        </div>
-                    `;
-                }
-            } else if (day === "3") {
-                promptTiming = "3日目（7/13）：勝浦 ➔ 新宮・速玉大社 ➔ 帰路";
-                if (type.includes("rain")) {
-                    promptProblem = "雨がけっこう降っていて、速玉大社を歩くのが面倒です。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-showers-water mr-2"></i>【速玉大社は平地で歩きやすさNo.1！お土産グルメ満喫プランに切り替え】</p>
-                        <p class="text-xs">熊野速玉大社は本宮や那智と違い、階段がほとんどないフラットな敷地なので、雨でもかなり参拝しやすいですよ！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>境内まで駐車場から平坦ですぐ近くなので、傘を差して速玉大社の本殿（美しい朱塗りのカラーは雨の日でも最高に映えます！）をササッと15分程度でお参りします。</li>
-                                <li>参拝後、新宮駅前にある和菓子の超名店（「香梅堂」で名物の絶品「鈴焼」など）をドライブしながら買い漁りましょう！</li>
-                                <li>お昼は、駅近のお店で生まぐろや香ばしい「めはり寿司」を店内でじっくり味わい、電車の乗車時間までおしゃれカフェ等で過ごすのがおすすめです。</li>
-                            </ol>
-                        </div>
-                    `;
-                } else if (type === "sick-mild") {
-                    promptProblem = "2日間の歩行や移動の疲れで、朝から体のだるさや筋肉痛がすごいです。";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-mug-hot mr-2"></i>【速玉大社はさらっと駐車場見学 ➔ 駅前ゆったり待機モード！】</p>
-                        <p class="text-xs">2日間の長距離移動で、体には思った以上に疲労がたまっています。帰りの電車移動（数時間）を元気に乗り切るためにまったりモードへ！</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>速玉大社は無理して広い境内をくまなく歩くのをやめて、鳥居付近の雰囲気を外から眺めるだけにしちゃいます。</li>
-                                <li>11:30の返却をすこし早めてレンタカーを新宮駅前に返し、車から早めに荷物を降ろしてリラックス。</li>
-                                <li>新宮駅の待合室や、近くのレトロな喫茶店に入って、温かい飲み物とめはり寿司をゆっくり食べながら電車を待ちましょう。</li>
-                            </ol>
-                        </div>
-                    `;
-                } else {
-                    promptProblem = "予定が押していて、新宮駅でのレンタカー返却や電車の時間に遅れそうです！";
-                    recommendation = `
-                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-triangle-exclamation mr-2"></i>【速玉大社をカットし、レンタカー返却と切符の確保を大優先！】</p>
-                        <p class="text-xs">新宮駅周辺でレンタカーのガソリン補給、返却チェック、手続きを行うには最低40〜50分前に駅近くに着く必要があります。</p>
-                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
-                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
-                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
-                                <li>もし勝浦を出発したのが10:30を回っているなどの場合、10:15からの速玉大社への立ち寄りは安全のためにパスします。</li>
-                                <li>速玉大社は次回のリベンジの宿題とし、直接新宮のガソリンスタンドとレンタカー店に向かって手続きを完了。</li>
-                                <li>時間がもし余ったら、新宮駅前の売店でお土産や、電車の中で食べるための「めはり寿司弁当」を購入し、車内ランチでお腹を幸せに満たしましょう！</li>
-                            </ol>
-                        </div>
-                    `;
-                }
-            }
-
-            // 自由入力の追加
-            if (details) {
-                recommendation += `
-                    <div class="mt-3 p-3 bg-tiffany-accent/10 border-l-4 border-tiffany-accent rounded-xl text-xs text-tiffany-deep font-bold">
-                        <strong>✏️ 入力された状況へのピンポイント回答：</strong><br>
-                        「${details}」へのアドバイス：決して焦らず、周りの安全なコンビニや道の駅に車を一時停止させて、再度マップアプリやこのしおりの緊急連絡先にアクセスし、状況に応じたタクシー配車や医療機関の確認を優先してください。何よりの安全が一番の思い出です！
-                    </div>
-                `;
-            }
 
             // HTMLに挿入して表示
             answerText.innerHTML = recommendation;
