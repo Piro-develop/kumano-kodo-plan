@@ -99,6 +99,9 @@
             <button onclick="switchTab('packing')" id="tab-packing" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-transparent text-gray-400 hover:text-tiffany-deep hover:bg-tiffany-light/30 transition-all duration-300">
                 <i class="fa-solid fa-suitcase block text-lg mb-1"></i> 持ち物
             </button>
+            <button onclick="switchTab('links')" id="tab-links" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-transparent text-gray-400 hover:text-tiffany-deep hover:bg-tiffany-light/30 transition-all duration-300">
+                <i class="fa-solid fa-link block text-lg mb-1"></i> リンク先
+            </button>
         </div>
     </nav>
 
@@ -761,6 +764,110 @@
                 </div>
             </div>
         </section>
+        <!-- TAB 5: リンク先一覧 -->
+<section id="content-links" class="tab-content hidden space-y-6">
+    <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light">
+        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep border-b-2 border-dashed border-tiffany-light pb-3 mb-4 flex items-center">
+            <i class="fa-solid fa-link text-tiffany-accent mr-2"></i> リンク先一覧
+        </h2>
+
+        <p class="text-xs text-gray-500 mb-5 leading-relaxed font-bold">
+            旅行中に確認したいお店・観光地・宿泊施設のリンク集です。店名・施設名をタップすると外部サイトが開きます。
+        </p>
+
+        <div class="space-y-6 text-xs font-bold text-tiffany-deep">
+
+            <!-- ご飯 -->
+            <div>
+                <h3 class="bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main mb-3">
+                    🍚 ご飯
+                </h3>
+                <ul class="space-y-2 pl-4">
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30008436/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">炭火焼鳥と熊野おでん おかげさん</a>
+                        <span class="text-gray-500"> ※居酒屋</span>
+                    </li>
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30011102/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">ときわや</a>
+                        <span class="text-gray-500"> ※和食・居酒屋</span>
+                    </li>
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30009921/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">ほん和か</a>
+                        <span class="text-gray-500"> ※お好み焼き</span>
+                    </li>
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30000381/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">茶房 珍重庵 本宮店</a>
+                        <span class="text-gray-500"> ※めはり寿司。甘味処。</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- カフェ -->
+            <div>
+                <h3 class="bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main mb-3">
+                    ☕ カフェ
+                </h3>
+                <ul class="space-y-2 pl-4">
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30007570/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">cafe alma</a>
+                        <span class="text-gray-500"> ※自家焙煎コーヒーを提供</span>
+                    </li>
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30010252/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">kumano 森のふくろう文庫</a>
+                        <span class="text-gray-500"> ※約6,000冊の蔵書がある古本カフェ</span>
+                    </li>
+                    <li>
+                        ・<a href="https://tabelog.com/wakayama/A3004/A300402/30000381/" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">茶房珍重庵 本宮店</a>
+                        <span class="text-gray-500"> ※上記、めはり寿司のお店。「もうで餅」なども提供。</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- お土産屋 -->
+            <div>
+                <h3 class="bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main mb-3">
+                    🎁 お土産屋
+                </h3>
+                <ul class="space-y-2 pl-4">
+                    <li>
+                        ・<a href="https://www.umai-sakeya.com/SHOP/kumanomeguri-beer.html" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">地酒みゆきや</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 観光 -->
+            <div>
+                <h3 class="bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main mb-3">
+                    ⛩️ 観光
+                </h3>
+                <ul class="space-y-2 pl-4">
+                    <li>
+                        ・<a href="https://kumanohayatama.jp/?page_id=18" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">神倉神社</a>
+                        <span class="text-gray-500"> ※上島パパおすすめ。ゴトビキ岩が圧巻だが、階段は538段。。。</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 宿泊施設 -->
+            <div>
+                <h3 class="bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main mb-3">
+                    🏨 宿泊施設
+                </h3>
+                <ul class="space-y-2 pl-4">
+                    <li>
+                        ・<a href="https://www.jalan.net/uw/uwp3200/uww3201init.do?yadNo=317091&stayYear=&stayMonth=&stayDay=&stayCount=1&roomCount=1&dateUndecided=1&adultNum=2&distCd=01&smlCd=301005&roomCrack=200000&screenId=UWW3101&planCd=03901856&roomTypeCd=0420486&planListNumPlan=25_0_2&groupBookingFlg=&ccnt=pc-plan-sort-317091-03901856-1-0420486-3-detail-button" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">大露天の宿　わたらせ温泉　ホテルやまゆり</a>
+                        <span class="text-gray-500"> ※素泊まり</span>
+                    </li>
+                    <li>
+                        ・<a href="https://www.jalan.net/uw/uwp3200/uww3201init.do?yadNo=324016&stayYear=&stayMonth=&stayDay=&stayCount=1&roomCount=1&dateUndecided=1&adultNum=2&distCd=01&smlCd=301105&roomCrack=200000&screenId=UWW3101&planCd=04308154&roomTypeCd=0070432&planListNumPlan=14_3_1&groupBookingFlg=&ccnt=pc-plan-sort-324016-04308154-4-0070432-2-detail-button" target="_blank" class="text-tiffany-deep underline decoration-tiffany-main decoration-2 underline-offset-4">南紀勝浦温泉　ホテル浦島</a>
+                        <span class="text-gray-500"> ※朝夕食付</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
     </main>
 
     <!-- フッター -->
