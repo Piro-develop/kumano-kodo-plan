@@ -135,14 +135,13 @@
                 <div class="relative border-l-4 border-tiffany-main/30 ml-4 pl-6 space-y-6">
                     <!-- 行程 1-1 -->
                     <div class="relative group">
-                        <!-- タイムラインのポップな丸ポインタ -->
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>13:37</span>
                             <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">新宮駅に到着！</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">新宮駅到着 🚉</h3>
-                        <p class="text-xs text-gray-500 mt-1">特急くろしお等で新宮駅に到着。改札を出て、駅前のレンタカー店舗に向かいます。 ※おやつとして香梅堂で「鈴焼」を買うのもアリ！</p>
+                        <p class="text-xs text-gray-500 mt-1">特急くろしお等で新宮駅に到着。改札を出て、駅前のレンタカー店舗に向かいます。駅周辺の名店「香梅堂」で、名物のおやつ「鈴焼」を買っておくのもおすすめです！</p>
                         <div class="mt-2 flex items-center">
                             <input type="checkbox" id="check-1-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
                             <label for="check-1-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
@@ -157,29 +156,44 @@
                             <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-key mr-1"></i>手続き</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">レンタカー貸出・出発 🚗</h3>
-                        <p class="text-xs text-gray-500 mt-1">手続きをして車をレンタル。国道168号線を北上し、熊野川の広大な自然を眺めながら本宮へドライブします。（大斎原まで約50分）</p>
+                        <p class="text-xs text-gray-500 mt-1">手続きをして車をレンタル。新宮駅周辺から、まずは車で5分ほどの最初の聖地、神倉神社へ移動します。</p>
                         <div class="mt-2 flex items-center">
                             <input type="checkbox" id="check-1-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
                             <label for="check-1-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 1-2b (神倉神社追加) -->
+                    <!-- 行程 1-3 (神倉神社) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>14:15</span>
                             <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-mountain mr-1"></i>最初の聖地</span>
                         </div>
-                        <h3 class="font-bold text-tiffany-deep text-base mt-1">神倉神社 チラ見 ⛩️</h3>
-                        <p class="text-xs text-gray-500 mt-1">熊野の神々が最初に降臨したとされる聖地。源頼朝が寄進したとされる自然石の急峻な石段（538段）を登ると、巨大な御神体「ゴトビキ岩」がそびえ立ち、新宮市街と太平洋を一望できます！下から拝みましょう。（所要約10分）</p>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">神倉神社 ⛩️</h3>
+                        <p class="text-xs text-gray-500 mt-1">熊野の神々が最初に降臨したとされる神聖な場所。源頼朝が寄進したとされる自然石の非常に急峻な石段（538段）があり、その上には巨大な御神体「ゴトビキ岩」がそびえ立ちます。体力と相談しつつ、安全第一で見上げたりお参りしましょう。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-1-2b" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-1-2b" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-1-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 1-3 (大斎原時間変更) -->
+                    <!-- 行程 1-4 (道の駅熊野川) -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>15:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-store mr-1"></i>川沿い休憩</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">道の駅「熊野川」 🌊</h3>
+                        <p class="text-xs text-gray-500 mt-1">神倉神社から国道168号線を北上（約20分）。目の前に世界遺産「熊野川」の穏やかで広大な流れが広がります。ドライブの途中で深呼吸し、地元の特産品やお茶を楽しめるリフレッシュスポットです。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-1-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 1-5 (大斎原) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -187,40 +201,40 @@
                             <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-star mr-1"></i>大本命パワスポ</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">大斎原（おおゆのはら）参拝 ⛩️</h3>
-                        <p class="text-xs text-gray-500 mt-1">神倉神社から国道168号線を北上し本宮へ（約45分）。熊野本宮大社の旧社地。のどかな田んぼの中にどっしりとそびえ立つ日本最大の巨大鳥居（高さ33.9m）は圧倒的なパワーを感じます。（所要約40分）</p>
+                        <p class="text-xs text-gray-500 mt-1">道の駅「熊野川」から車で約15分。熊野本宮大社の旧社地であり、田んぼの中にそびえ立つ日本最大の巨大な鳥居（高さ33.9m）は圧巻です。神聖な空気を感じながら周囲を散策します。（所要約40分）</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-1-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-1-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-1-5" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-5" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 1-4 (ホテルやまゆり時間変更) -->
+                    <!-- 行程 1-6 (ホテルやまゆり) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>16:30〜</span>
-                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-hot-tub-person mr-1"></i>大露天風呂を満喫</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-hot-tub-person mr-1"></i>露天風呂を満喫</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">「わたらせ温泉 ホテルやまゆり」チェックイン ♨️</h3>
-                        <p class="text-xs text-gray-500 mt-1">渡瀬温泉にある源泉かけ流しの名宿。西日本最大級を誇る圧巻の大露天風呂や、広々とした貸切露天風呂（宿泊者は1時間まで無料！）で長旅と階段の疲れを心ゆくまで流しましょう。</p>
+                        <p class="text-xs text-gray-500 mt-1">大斎原から車で約10分。渡瀬温泉にある源泉かけ流しの名宿です。西日本最大級の広さを誇る大露天風呂や、宿泊者が無料で利用できる貸切露天風呂で、移動と歩行の疲れを気持ちよく洗い流しましょう。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-1-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-1-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-1-6" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-6" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 1-5 (夕食＠オープンデッキ追加) -->
+                    <!-- 行程 1-7 (オープンデッキ夕食) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>18:00〜</span>
-                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>屋外BBQ・ディナー</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>お外でディナー</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">夕食 ＠ オープンデッキ 🍖</h3>
-                        <p class="text-xs text-gray-500 mt-1">「おとなしの郷」の敷地内にあるレストランにて美味しい夕食を。大自然の澄んだ空気を感じながら取る食事は最高です。</p>
+                        <p class="text-xs text-gray-500 mt-1">大自然に囲まれたオープンデッキにて、爽やかな風を感じながら夕食を堪能します。翌日の本格的な古道ウォークに向けて、お腹いっぱい体力をチャージします！</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-1-5" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-1-5" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-1-7" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-7" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
                 </div>
@@ -230,19 +244,31 @@
             <!-- 第2日 -->
             <div id="day2" class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light scroll-mt-20">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-dashed border-tiffany-light pb-3 mb-4 gap-2">
-                    <div class="flex items-start space-x-3 min-w-0">
-                        <span class="bg-tiffany-main text-white text-xs font-black px-3 py-1.5 rounded-full shadow-sm whitespace-nowrap shrink-0">第2日</span>
-                        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep leading-snug min-w-0">
-                            <span class="block whitespace-nowrap">7月12日（日）</span>
-                            <span class="block text-base md:text-lg mt-1">古道歩き＆那智大滝</span>
-                        </h2>
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-tiffany-main text-white text-xs font-black px-3 py-1.5 rounded-full shadow-sm">第2日</span>
+                        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep">7月12日（土）古道歩き＆那智大滝へ</h2>
                     </div>
                     <span class="text-xs text-tiffany-dark font-bold bg-tiffany-light px-3 py-1 rounded-full w-max"><i class="fa-solid fa-person-walking-hiking mr-1"></i> 古道ウォーク＆観光</span>
                 </div>
 
                 <!-- タイムライン -->
                 <div class="relative border-l-4 border-tiffany-main/30 ml-4 pl-6 space-y-6">
-                    <!-- 行程 2-1 -->
+                    <!-- 行程 2-1 (チェックアウト) -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>08:00</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">ホテル出発</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">「わたらせ温泉 ホテルやまゆり」チェックアウト 👋</h3>
+                        <p class="text-xs text-gray-500 mt-1">お宿をチェックアウト。車で熊野本宮大社周辺の駐車場へ向かいます（約10分）。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-2 (駐車) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -250,14 +276,14 @@
                             <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">本宮に駐車</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社周辺に車を停める 🅿️</h3>
-                        <p class="text-xs text-gray-500 mt-1">世界遺産センター前などの無料・有料駐車場に車をセット。ここに車を先回りさせておくのがゴール後の超スマートな動き方です！</p>
+                        <p class="text-xs text-gray-500 mt-1">世界遺産センター前などの無料・有料駐車場に車をセット。ここに車を先回りさせておくのが、古道ウォーク終了後にスムーズに移動するためのスマートな動き方です！</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-2 -->
+                    <!-- 行程 2-3 (バス) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -265,14 +291,14 @@
                             <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-bus mr-1"></i>路線バス</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">バスで「発心門王子」へ移動 🚌</h3>
-                        <p class="text-xs text-gray-500 mt-1">本宮大社前バス停から「発心門王子行き」の路線バスに乗車（約15分）。※事前に最新の運行ダイヤをしっかりチェックしておきましょう！</p>
+                        <p class="text-xs text-gray-500 mt-1">本宮大社前バス停から「発心門王子行き」の路線バスに乗車してスタート地点へ（乗車約15分）。※事前に最新の運行ダイヤをしっかり確認しておきましょう！</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-3 -->
+                    <!-- 行程 2-4 (古道ウォーク) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -280,14 +306,14 @@
                             <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-tree mr-1"></i>古道歩き</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">熊野古道：発心門王子 ➔ 熊野本宮大社 🧭</h3>
-                        <p class="text-xs text-gray-500 mt-1"><strong>【のどかな初心者向けコース】約7km / 所要約2.5〜3時間</strong><br>下り坂が多く舗装路やなだらかな土の道、茶畑を抜ける平易で気持ちのいいルート。4.5km地点の「伏拝（ふしおがみ）王子」から見下ろす本宮のパノラマビューは超絶品！</p>
+                        <p class="text-xs text-gray-500 mt-1"><strong>【のどかな初心者向けコース】約7km / 所要約2.5〜3時間</strong><br>下り坂が多く、舗装された道路や平坦でなだらかな土の道、美しい茶畑を抜ける気持ちの良いルート。4.5km地点の「伏拝（ふしおがみ）王子」から見下ろす本宮大社のパノラマビューは絶品です！</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                                        <!-- 行程 2-3b（カフェ組） -->
+                    <!-- 行程 2-5 (カフェ組) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -295,29 +321,29 @@
                             <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-mug-hot mr-1"></i>カフェ組</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">カフェ組（先回り休憩） ☕</h3>
-                        <p class="text-xs text-gray-500 mt-1">疲れた組は、4.5km地点の「伏拝王子」から歩いてすぐの「伏拝口」バス停から路線バスに乗車し、一足先に本宮大社周辺へワープ！大社近くの「森のふくろう文庫」（古書に囲まれた落ち着いた読書空間）や、「cafe alma」（本格的な自家焙煎コーヒーやスイーツが楽しめるお店）などの素敵なカフェで、歩き組の到着をのんびり待ちながら足を休めます。</p>
+                        <p class="text-xs text-gray-500 mt-1">疲れた方は、4.5km地点の伏拝王子から少し歩いた「伏拝口」バス停から路線バスに乗り、一足先に本宮大社周辺へ。本宮近くの「森のふくろう文庫」（静かな読書空間が広がるお店）や、「cafe alma」（こだわりの自家焙煎コーヒーが楽しめるお店）などのカフェで、歩き組の到着をのんびり待ちながら休憩します。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-3b" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-3b" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-5" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-5" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-4 -->
+                    <!-- 行程 2-6 (参拝＆ランチ) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>12:00</span>
-                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>ごちそう</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>名物ランチ</span>
                         </div>
-                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社参拝 ＆ ランチ@めはり寿司 🍙</h3>
-                        <p class="text-xs text-gray-500 mt-1">ゴールの本宮大社にそのまま入り、檜皮葺の厳かな本殿を参拝。参拝した後は、名物の「めはり寿司」@茶房 珍重庵 本宮店でお腹を満たしましょう！</p>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社参拝 ＆ 周辺ランチ 🍙</h3>
+                        <p class="text-xs text-gray-500 mt-1">ゴールの本宮大社にて、檜皮葺の厳粛な社殿を参拝します。参拝後は周辺の食事処で名物の「めはり寿司」や温かいうどんを食べ、エネルギーを補給します！</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-6" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-6" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-5 -->
+                    <!-- 行程 2-7 (車移動) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -325,14 +351,14 @@
                             <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">車で移動</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">車で那智山へお出かけ 🚙</h3>
-                        <p class="text-xs text-gray-500 mt-1">国道168号線を一気に南下し、那智勝浦新宮道路（嬉しい無料！）などを通って那智の滝へ向かいます。（所要約1時間15分）。疲れたら無理せずコンビニや道の駅で休憩を！</p>
+                        <p class="text-xs text-gray-500 mt-1">国道168号線を一気に南下し、那智勝浦新宮道路（無料）等を経由して那智の滝を目指します（約1時間15分）。疲れた場合は無理をせずコンビニや道の駅で適度に休憩を挟みましょう。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-5" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-5" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-7" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-7" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-6 -->
+                    <!-- 行程 2-8 (那智の滝) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
@@ -340,25 +366,40 @@
                             <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-droplet mr-1"></i>大迫力滝</span>
                         </div>
                         <h3 class="font-bold text-tiffany-deep text-base mt-1">那智の滝・那智山散策 🌊</h3>
-                        <p class="text-xs text-gray-500 mt-1">日本一の落差133mを誇るド迫力の名瀑！間近の「お瀧拝所」から浴びるマイナスイオンは極上。体力があるなら470段のちょっぴりハードな階段を登って、熊野那智大社と那智山青岸渡寺も参拝しちゃいましょう！</p>
+                        <p class="text-xs text-gray-500 mt-1">日本一の落差133mを誇る豪快な滝！すぐ近くの「お瀧拝所」から、心地よいマイナスイオンを体いっぱいに浴びます。体力に余裕があれば、石段を登って熊野那智大社と那智山青岸渡寺の参拝も楽しめます。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-6" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-6" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-8" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-8" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
 
-                    <!-- 行程 2-7 -->
+                    <!-- 行程 2-9 (駐車場から送迎バス) -->
                     <div class="relative group">
                         <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
                         <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
                             <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>16:30</span>
-                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-ship mr-1"></i>カメの船</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-bus-simple mr-1"></i>送迎バス</span>
                         </div>
-                        <h3 class="font-bold text-tiffany-deep text-base mt-1">勝浦港からお船で「ホテル浦島」へ ⚓</h3>
-                        <p class="text-xs text-gray-500 mt-1">勝浦港の無料駐車場に車を置いて、観光桟橋からカメ型送迎船に乗船（約5分）。海を渡って巨大温泉天国へ！有名な大洞窟温泉「忘帰洞」の波音を聴きながらの温泉浴は一生の思い出になりますよ！</p>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">ホテル浦島 専用駐車場から送迎バスでホテルへ移動 🚌</h3>
+                        <p class="text-xs text-gray-500 mt-1">ホテル浦島専用の駐車場（無料）に車をセットします。ここから発着するホテル専用の送迎バスに乗り込み、ホテル浦島へと移動します。</p>
                         <div class="mt-2 flex items-center">
-                            <input type="checkbox" id="check-2-7" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
-                            <label for="check-2-7" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                            <input type="checkbox" id="check-2-9" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-9" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-10 (ホテル浦島チェックイン) -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>17:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-hotel mr-1"></i>巨大温泉リゾート</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">「ホテル浦島」チェックイン ♨️</h3>
+                        <p class="text-xs text-gray-500 mt-1">送迎バスでホテルに到着し、チェックイン。名物の大洞窟温泉「忘帰洞」など、迫力の海を眺めながら入る温泉や、広い館内の探検、温泉スタンプラリーをゆっくり満喫しましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-10" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-10" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
                         </div>
                     </div>
                 </div>
