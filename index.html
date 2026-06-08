@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>そうだ、熊野に行こう！フレキシブル旅のしおり</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons for Beautiful & Cute style icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Mochiy Pop One for cute pop titles, Zen Maru Gothic for sweet rounded body text -->
+    <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        tiffany: {
+                            main: '#81D8D0',      // ティファニーブルー
+                            dark: '#00B4D8',      // 少し濃い水色（アクセント・ボーダー用）
+                            deep: '#0F4C5C',      // 濃いターコイズブルー（引き締めテキスト用）
+                            navy: '#0A2540',      // 濃紺（ヘッダー背景などの超引き締め用）
+                            light: '#F0FBFB',     // 非常に薄いティファニーブルー（メイン背景用）
+                            accent: '#FF7096',    // ポップなピンク・コーラル（目立たせたい部分）
+                            yellow: '#FFE066'     // パッと明るいポップイエロー（お祝い・ポイント）
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                        pop: ['"Mochiy Pop One"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F0FBFB;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #81D8D0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-tiffany-light text-tiffany-deep font-sans min-h-screen flex flex-col selection:bg-tiffany-main/30">
+
+    <!-- ヘッダー（ヒーローセクション） -->
+    <header class="relative bg-gradient-to-br from-tiffany-main via-tiffany-dark to-tiffany-deep text-white py-8 px-4 shadow-lg overflow-hidden rounded-b-[2rem]">
+        <!-- ポップな泡が浮いているような背景装飾 -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-4 left-6 w-12 h-12 rounded-full bg-white blur-xs"></div>
+            <div class="absolute bottom-6 right-8 w-20 h-20 rounded-full bg-white blur-sm"></div>
+            <div class="absolute top-1/2 left-2/3 w-8 h-8 rounded-full bg-white blur-xs"></div>
+        </div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 text-center">
+            <span class="inline-block bg-tiffany-accent text-white text-xs font-black px-4 py-1.5 rounded-full uppercase tracking-wider mb-3 shadow-md animate-bounce">
+                <i class="fa-solid fa-compass mr-1"></i> Flexible Planner
+            </span>
+            <h1 class="font-pop text-3xl md:text-4xl tracking-wider text-tiffany-yellow drop-shadow-md mb-2">
+                そうだ、熊野に行こう！
+            </h1>
+
+            <img
+  src="assets/group-illustration.png"
+  alt="熊野旅行メンバー6人のイラスト"
+  class="mx-auto mt-4 mb-6 w-64 md:w-80 rounded-2xl"
+/>
+
+            <p class="text-xs md:text-sm font-bold text-white/90 max-w-xl mx-auto bg-tiffany-navy/25 py-2 px-4 rounded-2xl inline-block mt-1">
+                2026年7月11日(金) 〜 7月13日(日) 2泊3日<br>
+                🧸 エスケープルート＆AIトラブル相談付き旅のしおり 🧸
+            </p>
+        </div>
+        <!-- 装飾的なポップな下境界線 -->
+        <div class="absolute bottom-0 left-0 w-full h-1.5 bg-tiffany-accent"></div>
+    </header>
+
+    <!-- メインナビゲーション（丸みのあるポップなタブ） -->
+    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-md border-b border-tiffany-light px-2 py-1.5">
+        <div class="max-w-4xl mx-auto flex justify-around gap-1">
+            <button onclick="switchTab('itinerary')" id="tab-itinerary" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-tiffany-main text-tiffany-deep bg-tiffany-light/50 transition-all duration-300">
+                <i class="fa-solid fa-calendar-days block text-lg mb-1 text-tiffany-main"></i> しおり
+            </button>
+            <button onclick="switchTab('escape')" id="tab-escape" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-transparent text-gray-400 hover:text-tiffany-deep hover:bg-tiffany-light/30 transition-all duration-300">
+                <i class="fa-solid fa-umbrella block text-lg mb-1"></i> 雨天・緊急
+            </button>
+            <button onclick="switchTab('ai')" id="tab-ai" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-transparent text-gray-400 hover:text-tiffany-deep hover:bg-tiffany-light/30 transition-all duration-300">
+                <i class="fa-solid fa-robot block text-lg mb-1"></i> AIお守り
+            </button>
+            <button onclick="switchTab('packing')" id="tab-packing" class="tab-btn flex-1 py-3 text-center text-xs font-black rounded-xl border-b-4 border-transparent text-gray-400 hover:text-tiffany-deep hover:bg-tiffany-light/30 transition-all duration-300">
+                <i class="fa-solid fa-suitcase block text-lg mb-1"></i> 持ち物
+            </button>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="flex-grow max-w-4xl w-full mx-auto p-4 md:p-6">
+
+        <!-- TAB 1: タイムスケジュール -->
+        <section id="content-itinerary" class="tab-content block space-y-6">
+            
+            <!-- 日程切り替え用クイックアンカー -->
+            <div class="flex justify-center space-x-2 md:space-x-4 mb-4">
+                <a href="#day1" class="bg-white border-2 border-tiffany-main text-tiffany-deep px-4 py-2 rounded-full text-xs font-black shadow-sm hover:bg-tiffany-main hover:text-white transition-all">☀️ 第1日 (7/11)</a>
+                <a href="#day2" class="bg-white border-2 border-tiffany-main text-tiffany-deep px-4 py-2 rounded-full text-xs font-black shadow-sm hover:bg-tiffany-main hover:text-white transition-all">🌳 第2日 (7/12)</a>
+                <a href="#day3" class="bg-white border-2 border-tiffany-main text-tiffany-deep px-4 py-2 rounded-full text-xs font-black shadow-sm hover:bg-tiffany-main hover:text-white transition-all">🌊 第3日 (7/13)</a>
+            </div>
+
+            <!-- 第1日 -->
+            <div id="day1" class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light scroll-mt-20">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-dashed border-tiffany-light pb-3 mb-4 gap-2">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-tiffany-main text-white text-xs font-black px-3 py-1.5 rounded-full shadow-sm">第1日</span>
+                        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep">7月11日（金）新宮から本宮へ</h2>
+                    </div>
+                    <span class="text-xs text-tiffany-dark font-bold bg-tiffany-light px-3 py-1 rounded-full w-max"><i class="fa-solid fa-car mr-1"></i> レンタカーでドライブ</span>
+                </div>
+
+                <!-- タイムライン -->
+                <div class="relative border-l-4 border-tiffany-main/30 ml-4 pl-6 space-y-6">
+                    <!-- 行程 1-1 -->
+                    <div class="relative group">
+                        <!-- タイムラインのポップな丸ポインタ -->
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>13:47</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">新宮駅に到着！</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">新宮駅到着 🚉</h3>
+                        <p class="text-xs text-gray-500 mt-1">特急くろしお等で新宮駅に到着。改札を出て、駅前のレンタカー店舗に向かいます。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-1-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 1-2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>14:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-key mr-1"></i>手続き</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">レンタカー貸出・出発 🚗</h3>
+                        <p class="text-xs text-gray-500 mt-1">手続きをして車をレンタル。国道168号線を北上し、熊野川の広大な自然を眺めながら本宮へドライブします。（約50分）</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-1-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 1-3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>15:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-star mr-1"></i>大本命パワスポ</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">大斎原（おおゆのはら）参拝 ⛩️</h3>
+                        <p class="text-xs text-gray-500 mt-1">熊野本宮大社の旧社地。のどかな田んぼの中にどっしりとそびえ立つ日本最大の巨大鳥居（高さ33.9m）は圧倒的なパワーを感じます。（所要約45分）</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-1-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 1-4 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>16:00〜</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-hot-tub-person mr-1"></i>名湯に癒やされる</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">温泉宿にチェックイン ♨️</h3>
+                        <p class="text-xs text-gray-500 mt-1">本宮周辺の「湯の峰温泉」「川湯温泉」「渡瀬温泉」などへ。日本最古の湯とされる湯の峰の「つぼ湯」が超おすすめ。翌日のウォークに備えて体をふやかすくらい温まりましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-1-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-1-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第2日 -->
+            <div id="day2" class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light scroll-mt-20">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-dashed border-tiffany-light pb-3 mb-4 gap-2">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-tiffany-main text-white text-xs font-black px-3 py-1.5 rounded-full shadow-sm">第2日</span>
+                        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep">7月12日（土）古道歩き＆那智大滝</h2>
+                    </div>
+                    <span class="text-xs text-tiffany-dark font-bold bg-tiffany-light px-3 py-1 rounded-full w-max"><i class="fa-solid fa-person-walking-hiking mr-1"></i> 古道ウォーク＆観光</span>
+                </div>
+
+                <!-- タイムライン -->
+                <div class="relative border-l-4 border-tiffany-main/30 ml-4 pl-6 space-y-6">
+                    <!-- 行程 2-1 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>08:20</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">本宮に駐車</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社周辺に車を停める 🅿️</h3>
+                        <p class="text-xs text-gray-500 mt-1">世界遺産センター前などの無料・有料駐車場に車をセット。ここに車を先回りさせておくのがゴール後の超スマートな動き方です！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>08:40</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-bus mr-1"></i>路線バス</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">バスで「発心門王子」へ移動 🚌</h3>
+                        <p class="text-xs text-gray-500 mt-1">本宮大社前バス停から「発心門王子行き」の路線バスに乗車（約15分）。※事前に最新の運行ダイヤをしっかりチェックしておきましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>09:00〜12:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-tree mr-1"></i>古道歩き</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">熊野古道：発心門王子 ➔ 熊野本宮大社 🧭</h3>
+                        <p class="text-xs text-gray-500 mt-1"><strong>【のどかな初心者向けコース】約7km / 所要約2.5〜3時間</strong><br>下り坂が多く舗装路やなだらかな土の道、茶畑を抜ける平易で気持ちのいいルート。4.5km地点の「伏拝（ふしおがみ）王子」から見下ろす本宮のパノラマビューは超絶品！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-4 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>12:00</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>ごちそう</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">本宮大社参拝 ＆ 周辺ランチ 🍙</h3>
+                        <p class="text-xs text-gray-500 mt-1">ゴールの本宮大社にそのまま入り、檜皮葺の厳かな本殿を参拝。参拝した後は、門前町のカフェや食事処で名物の「めはり寿司」や美味しい「うどん」でお腹を満たしましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-5 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>13:00</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">車で移動</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">車で那智山へお出かけ 🚙</h3>
+                        <p class="text-xs text-gray-500 mt-1">国道168号線を一気に南下し、那智勝浦新宮道路（嬉しい無料！）などを通って那智の滝へ向かいます。（所要約1時間15分）。疲れたら無理せずコンビニや道の駅で休憩を！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-5" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-5" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-6 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>14:15〜15:45</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-droplet mr-1"></i>大迫力滝</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">那智の滝・那智山散策 🌊</h3>
+                        <p class="text-xs text-gray-500 mt-1">日本一の落差133mを誇るド迫力の名瀑！間近の「お瀧拝所」から浴びるマイナスイオンは極上。体力があるなら470段のちょっぴりハードな階段を登って、熊野那智大社と那智山青岸渡寺も参拝しちゃいましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-6" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-6" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 2-7 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>16:30</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-ship mr-1"></i>カメの船</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">勝浦港からお船で「ホテル浦島」へ ⚓</h3>
+                        <p class="text-xs text-gray-500 mt-1">勝浦港の無料駐車場に車を置いて、観光桟橋からカメ型送迎船に乗船（約5分）。海を渡って巨大温泉天国へ！有名な大洞窟温泉「忘帰洞」の波音を聴きながらの温泉浴は一生の思い出になりますよ！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-2-7" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-2-7" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 第3日 -->
+            <div id="day3" class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light scroll-mt-20">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b-2 border-dashed border-tiffany-light pb-3 mb-4 gap-2">
+                    <div class="flex items-center space-x-3">
+                        <span class="bg-tiffany-main text-white text-xs font-black px-3 py-1.5 rounded-full shadow-sm">第3日</span>
+                        <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep">7月13日（日）速玉大社を巡り、新宮より帰路へ</h2>
+                    </div>
+                    <span class="text-xs text-tiffany-dark font-bold bg-tiffany-light px-3 py-1 rounded-full w-max"><i class="fa-solid fa-train mr-1"></i> 帰路・特急列車の旅</span>
+                </div>
+
+                <!-- タイムライン -->
+                <div class="relative border-l-4 border-tiffany-main/30 ml-4 pl-6 space-y-6">
+                    <!-- 行程 3-1 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>09:30</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">ホテル発</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">チェックアウト・出発 👋</h3>
+                        <p class="text-xs text-gray-500 mt-1">朝ごはんと朝風呂を満喫したら、名残惜しいけれどチェックアウト。送迎船で勝浦港へ戻り、車で新宮駅方面へ向かいます（約30分）。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-3-1" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-3-1" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 3-2 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>10:15〜11:15</span>
+                            <span class="text-[10px] font-bold bg-tiffany-yellow text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-torii-gate mr-1"></i>三山制覇！</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">熊野速玉大社 参拝 ⛩️</h3>
+                        <p class="text-xs text-gray-500 mt-1">目の覚めるような朱塗りの美しい大社。これで「本宮」「那智」「速玉」の熊野三山を全て制覇したことになります！境内にある国天然記念物の「梛（ナギ）の大樹」は必見パワー素材です。</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-3-2" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-3-2" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 3-3 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>11:30〜</span>
+                            <span class="text-[10px] font-bold bg-tiffany-light text-tiffany-deep px-2 py-0.5 rounded-full w-max"><i class="fa-solid fa-utensils mr-1"></i>まぐろランチ</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">レンタカー返却 ＆ 新宮ランチ 🍣</h3>
+                        <p class="text-xs text-gray-500 mt-1">新宮駅前にてレンタカーを無事返却。旅の締めくくりに、勝浦・新宮名物のプリップリな「生まぐろ」や「めはり寿司」を贅沢に頬張りましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-3-3" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-3-3" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+
+                    <!-- 行程 3-4 -->
+                    <div class="relative group">
+                        <div class="absolute -left-[34px] top-1 bg-white border-4 border-tiffany-main w-5 h-5 rounded-full group-hover:bg-tiffany-accent group-hover:border-tiffany-accent transition-all duration-200 shadow-sm"></div>
+                        <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                            <span class="text-tiffany-accent font-black text-sm"><i class="fa-regular fa-clock mr-1"></i>午後</span>
+                            <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full w-max">電車の旅</span>
+                        </div>
+                        <h3 class="font-bold text-tiffany-deep text-base mt-1">新宮駅から特急で帰路へ 🚆</h3>
+                        <p class="text-xs text-gray-500 mt-1">特急くろしお（大阪方面）や特急南紀（名古屋方面）に乗って、海と山の景色を見ながらリラックス。最高だった熊野の思い出をお土産と一緒に持って帰りましょう！</p>
+                        <div class="mt-2 flex items-center">
+                            <input type="checkbox" id="check-3-4" class="itinerary-check rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="saveProgress()">
+                            <label for="check-3-4" class="text-xs text-gray-400 select-none cursor-pointer">チェックしてクリア！</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: 雨天・緊急対応（ポップアレンジ） -->
+        <section id="content-escape" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light">
+                <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep border-b-2 border-dashed border-tiffany-light pb-3 mb-4 flex items-center">
+                    <i class="fa-solid fa-umbrella text-tiffany-accent mr-2"></i> 雨の日の代替プラン
+                </h2>
+                <p class="text-xs text-gray-600 mb-4 leading-relaxed font-bold">
+                    和歌山県は実はとっても雨が降りやすいエリアです。特に熊野古道や那智山は石畳がすべるため、強い雨の時は絶対に無理をせず、車移動が中心のお気軽インドア・ドライブに変更するのがハッピーのコツ！
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 代替案 1 -->
+                    <div class="border-2 border-tiffany-light rounded-2xl p-4 bg-tiffany-light/30">
+                        <span class="bg-tiffany-deep text-white text-[10px] font-black px-2 py-0.5 rounded-full">1日目の雨宿り</span>
+                        <h3 class="font-bold text-tiffany-deep mt-2 mb-1">世界遺産センター (熊野本宮館) 🏛️</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            本宮大社のすぐ向かいにあるスタイリッシュな室内展示館。熊野の歴史的なストーリーを、涼しい屋内でゆっくり学べます（入場無料！）。最初の情報収集にぴったりです。
+                        </p>
+                    </div>
+
+                    <!-- 代替案 2 -->
+                    <div class="border-2 border-tiffany-light rounded-2xl p-4 bg-tiffany-light/30">
+                        <span class="bg-tiffany-deep text-white text-[10px] font-black px-2 py-0.5 rounded-full">2日目の雨宿り</span>
+                        <h3 class="font-bold text-tiffany-deep mt-2 mb-1">温泉めぐり＆ショート参拝 ♨️</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            古道歩きはキッパリ諦めて、車で本宮大社・那智滝のギリギリすぐそばまでドライブ。徒歩3分程度でサッと見学。あとは湯の峰温泉で温泉たまごを作ったり、足湯をまったり楽しもう！
+                        </p>
+                    </div>
+
+                    <!-- 代替案 3 -->
+                    <div class="border-2 border-tiffany-light rounded-2xl p-4 bg-tiffany-light/30">
+                        <span class="bg-tiffany-deep text-white text-[10px] font-black px-2 py-0.5 rounded-full">3日目の雨宿り</span>
+                        <h3 class="font-bold text-tiffany-deep mt-2 mb-1">太地町 くじらの博物館 🐳</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            勝浦から少し足を延ばした太地町にある、世界的にも貴重なくじらの博物館。巨大な骨格展示や、屋内シートから見られるイルカ・クジラショーで、雨でも一日たっぷり楽しめます。
+                        </p>
+                    </div>
+
+                    <!-- 代替案 4 -->
+                    <div class="border-2 border-tiffany-light rounded-2xl p-4 bg-tiffany-light/30">
+                        <span class="bg-tiffany-deep text-white text-[10px] font-black px-2 py-0.5 rounded-full">お菓子・体験</span>
+                        <h3 class="font-bold text-tiffany-deep mt-2 mb-1">那智黒アメ本舗 ＆ 勝浦お土産巡り 🍭</h3>
+                        <p class="text-xs text-gray-600 leading-relaxed">
+                            名産の那智黒アメを買いに行ったり、勝浦港周辺にある可愛いレトロなお土産屋さんやカフェを傘をさしてふらり。濡れないお土産探しをゆったりエンジョイ！
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 体調不良時エスケープ -->
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light">
+                <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep border-b-2 border-dashed border-tiffany-light pb-3 mb-4 flex items-center">
+                    <i class="fa-solid fa-heart-pulse text-tiffany-accent mr-2"></i> もしも体調がわるくなったら
+                </h2>
+                <div class="space-y-4">
+                    <div class="bg-tiffany-light/80 border-2 border-tiffany-main/30 rounded-2xl p-4">
+                        <h3 class="font-bold text-tiffany-deep text-sm flex items-center mb-1">
+                            <i class="fa-solid fa-triangle-exclamation text-tiffany-accent mr-2"></i> 2日目 古道ウォーク中の離脱ルート
+                        </h3>
+                        <p class="text-xs text-tiffany-deep leading-relaxed">
+                            発心門王子〜本宮大社は、初心者向けですが7kmあります。「ちょっと足が痛いかも…」「しんどい…」と思ったら我慢せずにすぐ退避しましょう！
+                        </p>
+                        <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-tiffany-light shadow-xs">
+                                <strong class="text-tiffany-accent">📍 【伏拝王子】リタイアリミット</strong><br>
+                                スタートから4.5km地点。ここには売店「伏拝茶屋」があり座って休めます。ここから車道に出てタクシーを呼んだり、「伏拝口」バス停からバスに乗ってショートカットして本宮に戻れます！
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-tiffany-light shadow-xs">
+                                <strong class="text-tiffany-accent">📍 【無理せず休憩】</strong><br>
+                                ルートを途中で逸れたところに「道の駅奥熊野古道ほんぐう」もあります。水分不足による熱中症に気をつけて、お茶や塩分をたっぷり取りましょう。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 電話リンク -->
+                    <div class="border-2 border-tiffany-light rounded-2xl p-4">
+                        <h3 class="font-bold text-tiffany-deep text-sm mb-3">📞 熊野周辺 お助け電話帳（タップで掛けられます）</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                            <a href="tel:0735420050" class="flex items-center p-3 rounded-xl border-2 border-tiffany-light hover:border-tiffany-accent hover:bg-tiffany-light transition-all text-tiffany-deep">
+                                <i class="fa-solid fa-taxi text-tiffany-main text-lg mr-3"></i>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">本宮タクシー (本宮エリア)</p>
+                                    <p class="font-bold">0735-42-0050</p>
+                                </div>
+                            </a>
+                            <a href="tel:0735226262" class="flex items-center p-3 rounded-xl border-2 border-tiffany-light hover:border-tiffany-accent hover:bg-tiffany-light transition-all text-tiffany-deep">
+                                <i class="fa-solid fa-taxi text-tiffany-main text-lg mr-3"></i>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">新宮観光タクシー (新宮・本宮)</p>
+                                    <p class="font-bold">0735-22-6262</p>
+                                </div>
+                            </a>
+                            <a href="tel:0735521211" class="flex items-center p-3 rounded-xl border-2 border-tiffany-light hover:border-tiffany-accent hover:bg-tiffany-light transition-all text-tiffany-deep">
+                                <i class="fa-solid fa-taxi text-tiffany-main text-lg mr-3"></i>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">那智合同タクシー (勝浦・那智)</p>
+                                    <p class="font-bold">0735-52-1211</p>
+                                </div>
+                            </a>
+                            <a href="tel:0735313333" class="flex items-center p-3 rounded-xl border-2 border-tiffany-light hover:border-tiffany-accent hover:bg-tiffany-light transition-all text-tiffany-deep">
+                                <i class="fa-solid fa-hospital-user text-tiffany-accent text-lg mr-3"></i>
+                                <div>
+                                    <p class="text-[10px] text-gray-400">新宮市立医療センター (救急対応)</p>
+                                    <p class="font-bold">0735-31-3333</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: AIトラブルお守り相談（ポップアレンジ） -->
+        <section id="content-ai" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light">
+                <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep border-b-2 border-dashed border-tiffany-light pb-3 mb-4 flex items-center">
+                    <i class="fa-solid fa-robot text-tiffany-accent mr-2"></i> AIお助けお守り相談室
+                </h2>
+                <p class="text-xs text-gray-600 mb-6 leading-relaxed font-bold">
+                    旅先で雨が強くなっちゃった！予定がズレてバスに間に合わない！足が痛いかも…そんな時はあわてずに、状況を選択して「AI相談員」に聞いてみましょう！<br>
+                    アプリの中のAIがその場でパパッとベストアイデアを教えてくれます。
+                </p>
+
+                <!-- トラブル選択フォーム -->
+                <div class="bg-tiffany-light/60 p-4 rounded-2xl border-2 border-tiffany-light space-y-4 mb-6">
+                    <h3 class="font-bold text-xs text-tiffany-deep flex items-center">
+                        <i class="fa-solid fa-sliders mr-2 text-tiffany-accent"></i> いま、どんなトラブルが起きてますか？
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- 何日目？ -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-tiffany-deep mb-1">現在のタイミング ⏰</label>
+                            <select id="trouble-day" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
+                                <option value="1">1日目(7/11)午後：新宮駅からレンタカーで本宮へ移動中</option>
+                                <option value="2-morning">2日目(7/12)午前：古道ウォーク（発心門王子〜大社）開始前・歩き中</option>
+                                <option value="2-afternoon">2日目(7/12)午後：本宮 ➔ 那智滝 ➔ 勝浦ホテル浦島へ移動中</option>
+                                <option value="3">3日目(7/13)最終日：勝浦 ➔ 速玉大社 ➔ 新宮駅帰宅</option>
+                            </select>
+                        </div>
+
+                        <!-- トラブルの種類 -->
+                        <div>
+                            <label class="block text-[11px] font-bold text-tiffany-deep mb-1">トラブルの種類 😭</label>
+                            <select id="trouble-type" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
+                                <option value="rain-light">雨が降ってきた（傘があれば動ける小雨〜中雨）</option>
+                                <option value="rain-heavy">かなり激しい雨（外歩きが危険で、これ以上濡れたくない）</option>
+                                <option value="sick-mild">ちょっと体がダルい、足が痛くなってきて歩くのが辛い</option>
+                                <option value="delay">予定が遅れている、乗る予定のバスに乗り遅れそう</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- 補足説明（任意） -->
+                    <div>
+                        <label class="block text-[11px] font-bold text-tiffany-deep mb-1">詳しい状況や現在地を教えて（自由入力・任意） ✏️</label>
+                        <input type="text" id="trouble-details" placeholder="例: いま伏拝茶屋にいます。足がかなりピキピキしてきました…" class="w-full bg-white border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
+                    </div>
+
+                    <button onclick="generateAlternative()" class="w-full bg-tiffany-accent hover:bg-tiffany-accent/90 text-white font-black py-3 px-4 rounded-xl shadow-md transition-all flex items-center justify-center text-sm">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> AI相談員にアイデアをもらう！
+                    </button>
+                </div>
+
+                <!-- AIアドバイス結果表示エリア（ポップデザイン） -->
+                <div id="ai-answer-container" class="hidden border-4 border-dashed border-tiffany-main rounded-2xl p-5 bg-tiffany-light/30 relative transition-all duration-500">
+                    <span class="absolute top-2 right-3 text-[9px] font-black text-tiffany-accent tracking-widest"><i class="fa-solid fa-sparkles"></i> tiffany_blue_advisor</span>
+                    <h4 class="font-pop font-bold text-tiffany-deep border-b border-tiffany-light pb-2 mb-3 flex items-center text-sm">
+                        <i class="fa-solid fa-lightbulb text-tiffany-accent mr-2 animate-bounce"></i> AIのハピネスお助けプラン：
+                    </h4>
+                    <div id="ai-answer-text" class="text-xs text-tiffany-deep leading-relaxed space-y-3">
+                        <!-- ここにJSでポップなアドバイスが挿入されます -->
+                    </div>
+                </div>
+
+                <!-- 本物のAI（Geminiなど）に貼り付ける用のプロンプトジェネレータ -->
+                <div class="mt-8 border-t-2 border-dashed border-tiffany-light pt-6">
+                    <h3 class="font-pop font-bold text-sm text-tiffany-deep mb-2 flex items-center">
+                        <i class="fa-solid fa-copy text-tiffany-accent mr-2"></i> さらに本格的な生成AI（Gemini等）に直接聞くとき用
+                    </h3>
+                    <p class="text-[11px] text-gray-500 mb-4 font-bold">
+                        お手持ちのスマホのGeminiなどのAIチャットに、以下のテキストをそのままコピー＆ペーストして聞いてみてください。このしおりの全てのルールを完全に読み込ませた、さらに精度の高い裏ルート情報を引き出せます！
+                    </p>
+
+                    <div class="bg-tiffany-deep text-tiffany-light rounded-2xl p-4 relative font-mono text-xs max-h-60 overflow-y-auto custom-scrollbar">
+                        <button onclick="copyToClipboard('prompt-area')" class="absolute top-2 right-2 bg-tiffany-accent hover:bg-tiffany-accent/80 text-white font-black py-1 px-3 rounded-lg text-[10px] transition-all flex items-center">
+                            <i class="fa-solid fa-copy mr-1"></i> コピー
+                        </button>
+                        <pre id="prompt-area" class="whitespace-pre-wrap leading-relaxed pr-8 font-sans">現在、熊野2泊3日旅行の途中で、以下のしおり（ベースプラン）を遂行中です。
+
+【しおり情報】
+1日目: 13:47 新宮駅着、14:00 レンタカー、大斎原、本宮エリア泊
+2日目: 08:30 本宮駐車場 ➔ 08:40 バス ➔ 09:00 発心門王子〜本宮大社ウォーク（7km）、ランチ、13:00 車で那智の滝、14:15 那智の滝参拝、16:30 勝浦・ホテル浦島泊
+3日目: 09:30 出発、10:15 熊野速玉大社、11:30 レンタカー返却・新宮ランチ、午後帰宅
+
+【現在の状況とトラブル】
+現在、旅行の「[タイミングを入力]」頃です。
+実は、以下のトラブルが発生して困っています。
+「[トラブル内容、現在地など。例：雨が激しく降ってきた / 足が痛くてこれ以上歩けない]」
+
+【AIへの質問】
+このしおりの工程を大きく崩さずに、または最小限の変更で、今からどう動くのが最も安全で楽しめるか、次の具体的なステップを教えてください。周辺の安全な雨宿りスポット、短縮ルート、または代替プランの提案を求みます。</pre>
+                    </div>
+                    <div id="copy-toast" class="hidden text-center text-xs font-black text-tiffany-accent bg-tiffany-light py-2 rounded-xl mt-2 transition-all border border-tiffany-main">
+                        <i class="fa-solid fa-check mr-1"></i> プロンプトをコピーしたよ！このままGemini等に貼り付けて話しかけてみてね！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: 持ち物チェックリスト（ポップアレンジ） -->
+        <section id="content-packing" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-5 md:p-6 shadow-md border-2 border-tiffany-light">
+                <div class="flex items-center justify-between border-b-2 border-dashed border-tiffany-light pb-3 mb-4">
+                    <h2 class="font-pop text-lg md:text-xl font-bold text-tiffany-deep flex items-center">
+                        <i class="fa-solid fa-clipboard-check text-tiffany-accent mr-2"></i> 持ち物チェックリスト（夏の熊野・古道版）
+                    </h2>
+                    <button onclick="resetPackingList()" class="text-xs text-tiffany-accent hover:text-tiffany-accent/80 font-black"><i class="fa-solid fa-rotate-left mr-1"></i>全クリア</button>
+                </div>
+                <p class="text-xs text-gray-500 mb-5 leading-relaxed font-bold">
+                    7月中旬の熊野はムシムシと蒸し暑く、また雨もとっても多いです。お気に入り＆万全の準備をしていきましょう！チェックの状態はブラウザが自動で覚えているので安心です！
+                </p>
+
+                <div class="space-y-6">
+                    <!-- カテゴリ：基本・貴重品 -->
+                    <div>
+                        <h3 class="text-xs font-black text-tiffany-deep bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main flex items-center mb-3">
+                            <i class="fa-solid fa-id-card mr-2 text-tiffany-main"></i> 基本・貴重品
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pl-2 font-bold text-tiffany-deep">
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-essential-1" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>運転免許証（レンタカーを運転するのに絶対必須！）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-essential-2" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>健康保険証（万一の怪我のとき用のお守り）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-essential-3" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>小銭・現金（駐車場や古いバス、無人売店で大活躍！）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-essential-4" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>スマホ充電器 ＆ モバイルバッテリー</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ：古道ウォーク用（必須） -->
+                    <div>
+                        <h3 class="text-xs font-black text-tiffany-deep bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main flex items-center mb-3">
+                            <i class="fa-solid fa-mountain-sun mr-2 text-tiffany-main"></i> ハイキング・古道歩きの基本アイテム
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pl-2 font-bold text-tiffany-deep">
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-1" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>履き慣れたスニーカー 又は トレッキング用シューズ</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-2" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>お気に入りのレインコート・ポンチョ（古道は基本カッパ推奨！）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-3" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>日よけ用の帽子 ＆ 日焼け止め</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-4" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5 mr-2" onchange="savePacking()">
+                                <span>汗ふきシート ＆ マフラータオル</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-5" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>水分補給用ボトル（古道の中は自動販売機がとっても少ないです）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-walk-6" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>虫よけスプレー（山の中は蚊や虫がいます！）</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ：雨・夏の特別装備 -->
+                    <div>
+                        <h3 class="text-xs font-black text-tiffany-deep bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main flex items-center mb-3">
+                            <i class="fa-solid fa-cloud-showers-water mr-2 text-tiffany-main"></i> 雨と夏のスペシャル対策
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pl-2 font-bold text-tiffany-deep">
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-season-1" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>着替えの替え靴下（雨でシューズに水が入ったとき用！）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-season-2" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>ビニール袋（濡れた服やゴミを入れるのに大小2〜3枚）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-season-3" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>折りたたみ傘（街歩きや神社の駐車場からサッと差す用）</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-season-4" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>塩分補給キャンディ ＆ カロリーメイトなどのスナック</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- カテゴリ：温泉リゾート用 -->
+                    <div>
+                        <h3 class="text-xs font-black text-tiffany-deep bg-tiffany-light px-3 py-2 rounded-xl border-l-4 border-tiffany-main flex items-center mb-3">
+                            <i class="fa-solid fa-hot-tub-person mr-2 text-tiffany-main"></i> 温泉ホテル満喫グッズ
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pl-2 font-bold text-tiffany-deep">
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-onsen-1" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>館内用の着替え一式</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-onsen-2" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>濡れてもOKな温泉移動用の巾着袋</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer py-1">
+                                <input type="checkbox" id="pack-onsen-3" class="pack-item rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5" onchange="savePacking()">
+                                <span>個人的に必要なスキンケア・コスメグッズ</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 独自の追加欄 -->
+                <div class="mt-6 pt-4 border-t-2 border-dashed border-tiffany-light">
+                    <h3 class="text-xs font-black text-tiffany-deep mb-3 flex items-center">
+                        <i class="fa-solid fa-plus mr-2 text-tiffany-main"></i> わたしだけの持ち物を追加！
+                    </h3>
+                    <div class="flex space-x-2">
+                        <input type="text" id="new-item-text" placeholder="例: 御朱印帳、常備薬など" class="flex-grow border-2 border-tiffany-light rounded-xl p-2.5 text-xs font-bold text-tiffany-deep focus:border-tiffany-main focus:outline-none">
+                        <button onclick="addUserPackingItem()" class="bg-tiffany-main hover:bg-tiffany-main/90 text-white font-black py-2 px-4 rounded-xl text-xs transition-all shadow-md">
+                            追加する
+                        </button>
+                    </div>
+                    <div id="user-items-container" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pl-2 mt-4 font-bold text-tiffany-deep">
+                        <!-- 動的に追加されたアイテム -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gradient-to-tr from-tiffany-deep to-tiffany-dark text-tiffany-light py-8 text-center text-xs mt-10 rounded-t-[2rem]">
+        <div class="max-w-4xl mx-auto px-4 space-y-2">
+            <p class="font-pop text-tiffany-yellow text-sm tracking-widest">そうだ、熊野に行こう！ 旅のしおり</p>
+            <p class="font-bold">Made for Kumano Pilgrimage 2026. Keep Safe and Have a Nice Trip! 🧸</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        // ページ読み込み時の処理
+        window.onload = function() {
+            loadProgress();
+            loadPacking();
+            loadUserPackingItems();
+        }
+
+        // タブ切り替え機能
+        function switchTab(tabId) {
+            // すべてのタブコンテンツを非表示に
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // すべてのタブボタンのスタイルを非アクティブに
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-tiffany-main', 'text-tiffany-deep', 'bg-tiffany-light/50');
+                btn.classList.add('border-transparent', 'text-gray-400');
+            });
+
+            // 指定されたタブコンテンツを表示
+            const activeContent = document.getElementById('content-' + tabId);
+            if (activeContent) {
+                activeContent.classList.remove('hidden');
+            }
+
+            // 指定されたタブボタンをアクティブに
+            const activeBtn = document.getElementById('tab-' + tabId);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-gray-400');
+                activeBtn.classList.add('border-tiffany-main', 'text-tiffany-deep', 'bg-tiffany-light/50');
+            }
+
+            // スクロールを最上部に戻す
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // しおりのチェック進行状況の保存 (LocalStorage)
+        function saveProgress() {
+            const checks = document.querySelectorAll('.itinerary-check');
+            const progressData = {};
+            checks.forEach(check => {
+                progressData[check.id] = check.checked;
+                // スタイルの動的変更（親要素のテキストを打ち消し線に）
+                const titleNode = check.closest('.relative').querySelector('h3');
+                if (check.checked) {
+                    titleNode.classList.add('line-through', 'text-gray-300', 'font-normal');
+                } else {
+                    titleNode.classList.remove('line-through', 'text-gray-300', 'font-normal');
+                }
+            });
+            localStorage.setItem('kumano_progress', JSON.stringify(progressData));
+        }
+
+        function loadProgress() {
+            const savedData = localStorage.getItem('kumano_progress');
+            if (savedData) {
+                const progressData = JSON.parse(savedData);
+                for (const id in progressData) {
+                    const check = document.getElementById(id);
+                    if (check) {
+                        check.checked = progressData[id];
+                        const titleNode = check.closest('.relative').querySelector('h3');
+                        if (check.checked) {
+                            titleNode.classList.add('line-through', 'text-gray-300', 'font-normal');
+                        }
+                    }
+                }
+            }
+        }
+
+        // 持ち物リストの保存 (LocalStorage)
+        function savePacking() {
+            const items = document.querySelectorAll('.pack-item');
+            const packingData = {};
+            items.forEach(item => {
+                packingData[item.id] = item.checked;
+            });
+            localStorage.setItem('kumano_packing', JSON.stringify(packingData));
+        }
+
+        function loadPacking() {
+            const savedData = localStorage.getItem('kumano_packing');
+            if (savedData) {
+                const packingData = JSON.parse(savedData);
+                for (const id in packingData) {
+                    const item = document.getElementById(id);
+                    if (item) {
+                        item.checked = packingData[id];
+                    }
+                }
+            }
+        }
+
+        // ユーザーが独自に追加する持ち物リストの管理
+        let userItems = [];
+        function saveUserPackingItems() {
+            localStorage.setItem('kumano_user_packing', JSON.stringify(userItems));
+        }
+
+        function loadUserPackingItems() {
+            const saved = localStorage.getItem('kumano_user_packing');
+            if (saved) {
+                userItems = JSON.parse(saved);
+                renderUserPackingItems();
+            }
+        }
+
+        function addUserPackingItem() {
+            const input = document.getElementById('new-item-text');
+            const text = input.value.trim();
+            if (text === '') return;
+
+            const newItem = {
+                id: 'user-pack-' + Date.now(),
+                text: text,
+                checked: false
+            };
+
+            userItems.push(newItem);
+            saveUserPackingItems();
+            renderUserPackingItems();
+            input.value = '';
+        }
+
+        function deleteUserPackingItem(id) {
+            userItems = userItems.filter(item => item.id !== id);
+            saveUserPackingItems();
+            renderUserPackingItems();
+        }
+
+        function toggleUserPackingItem(id, checked) {
+            const item = userItems.find(item => item.id === id);
+            if (item) {
+                item.checked = checked;
+                saveUserPackingItems();
+            }
+        }
+
+        function renderUserPackingItems() {
+            const container = document.getElementById('user-items-container');
+            container.innerHTML = '';
+
+            userItems.forEach(item => {
+                const label = document.createElement('label');
+                label.className = 'flex items-center justify-between py-1 border-b border-tiffany-light';
+                
+                const leftDiv = document.createElement('div');
+                leftDiv.className = 'flex items-center space-x-3 cursor-pointer';
+
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.checked = item.checked;
+                input.className = 'rounded-full border-2 border-tiffany-main text-tiffany-main focus:ring-tiffany-main w-5 h-5';
+                input.onchange = (e) => toggleUserPackingItem(item.id, e.target.checked);
+
+                const span = document.createElement('span');
+                span.textContent = item.text;
+
+                leftDiv.appendChild(input);
+                leftDiv.appendChild(span);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'text-tiffany-accent hover:text-tiffany-accent/80 text-xs font-bold pl-2';
+                deleteBtn.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+                deleteBtn.onclick = (e) => {
+                    e.preventDefault();
+                    deleteUserPackingItem(item.id);
+                };
+
+                label.appendChild(leftDiv);
+                label.appendChild(deleteBtn);
+                container.appendChild(label);
+            });
+        }
+
+        function resetPackingList() {
+            const items = document.querySelectorAll('.pack-item');
+            items.forEach(item => {
+                item.checked = false;
+            });
+            userItems = [];
+            localStorage.removeItem('kumano_packing');
+            localStorage.removeItem('kumano_user_packing');
+            renderUserPackingItems();
+        }
+
+        // ローカルAIアドバイザーのシミュレーションロジック（配色＆ポップに最適化）
+        function generateAlternative() {
+            const day = document.getElementById('trouble-day').value;
+            const type = document.getElementById('trouble-type').value;
+            const details = document.getElementById('trouble-details').value;
+
+            const answerContainer = document.getElementById('ai-answer-container');
+            const answerText = document.getElementById('ai-answer-text');
+
+            let recommendation = "";
+            let promptTiming = "";
+            let promptProblem = "";
+
+            // シミュレーション意思決定ロジック
+            if (day === "1") {
+                promptTiming = "1日目（7/11）午後：新宮 ➔ 本宮エリアへ車移動中・到着時";
+                if (type.includes("rain")) {
+                    promptProblem = "雨が降っていて、大斎原での屋外参拝ができるか心配です。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-rain mr-2"></i>【本宮周辺：雨宿りカルチャープランにスイッチ！】</p>
+                        <p class="text-xs">大斎原は地面が土や芝生なので、雨がひどいと歩道に大きな水たまりができちゃいます。傘を差して歩くこともできますが、お洋服や靴が濡れて気分が下がっちゃうかも…</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>15:00の屋外大斎原の散歩はパスして、すぐ真横にあるお役立ち屋内施設<strong>「和歌山県世界遺産センター（熊野本宮館）」</strong>に車で直行します。</li>
+                                <li>ここはとっても綺麗で広々とした無料施設！熊野古道のヒストリー解説や、お勉強になるビデオコーナーで濡れずに学べます。</li>
+                                <li>16:00に予定通り宿へチェックイン。湯の峰温泉の名湯（つぼ湯など）をゆっくり楽しんで、お肌をすべすべにしちゃいましょう！</li>
+                            </ol>
+                        </div>
+                    `;
+                } else if (type === "sick-mild") {
+                    promptProblem = "長旅でちょっと体調がだるく、足が重いです。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-hand-holding-medical mr-2"></i>【直行＆早めの温泉セラピープランにチェンジ！】</p>
+                        <p class="text-xs">新宮駅から車で50分と移動が続いたため、体が疲れているのかも。明日は7kmのロングウォークですので、無理は絶対に禁物です！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>大斎原の参拝は歩くのをやめて車窓から大鳥居を眺めるだけにし、15:30には本宮周辺 of 温泉宿にチェックインしちゃいます。</li>
+                                <li>お宿に入ったら、水分をたくさん取って早めにお風呂にドボン。温まって血行を良くしましょう。</li>
+                                <li>20時にはお布団に入ってぐっすり眠り、翌朝の体調を見てウォークを本当にやるか判断するのが最善です！</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    promptProblem = "レンタカー出発手続きなどで、時間が予定より遅れています。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-clock mr-2"></i>【大斎原は明日にまわし、直接お宿へ安全運転ドライブ！】</p>
+                        <p class="text-xs">レンタカー店舗での手続きなどで遅れてしまった場合、夕暮れに大斎原の参拝を急いで行うのはバタバタして勿体ないです。</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>1日目は大斎原に寄るのをあきらめて、本宮エリアのお宿へ直接向かいましょう（16:30〜17:00頃の到着が目安）。</li>
+                                <li>大斎原の参拝は、<strong>2日目の12:00（本宮大社にゴールしてランチをするとき）</strong>に立ち寄るか、<strong>3日目の出発前</strong>に組み込むのがとってもスムーズですよ！</li>
+                            </ol>
+                        </div>
+                    `;
+                }
+            } else if (day === "2-morning") {
+                promptTiming = "2日目（7/12）午前：古道ウォーク開始前・最中";
+                if (type.includes("rain")) {
+                    promptProblem = "雨が降ってきて、山道（発心門王子〜本宮大社）をハイキングするのが厳しそうです。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-showers-heavy mr-2"></i>【古道歩きは中止！雨の日ドライブ＆大社サクッと参拝プラン】</p>
+                        <p class="text-xs">雨の熊野古道は、有名な苔むした石畳がとってもツルツルと滑りやすくなります。特に下り基調のルートはケガや捻挫の危険が高まります。</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li><strong>08:40の路線バスでの移動とウォークを潔く中止します。</strong></li>
+                                <li>車で「熊野本宮大社」まで行き、隣の世界遺産センターに車を置きます。</li>
+                                <li>傘を差しながら、滑らないようにゆっくりと本宮大社の本殿（階段あり）のみをササッと参拝します。</li>
+                                <li>その後、お昼まで湯の峰温泉に車でドライブ。世界遺産の岩風呂「つぼ湯」を見に行ったり、足湯に浸かって濡れた足を温めるのがおすすめ！</li>
+                            </ol>
+                        </div>
+                    `;
+                } else if (type === "sick-mild") {
+                    promptProblem = "歩き始めてみましたが、足腰がだるく、7km全部歩くのがしんどいです。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-triangle-exclamation mr-2"></i>【4.5km地点の伏拝王子でワープ退避エスケープ！】</p>
+                        <p class="text-xs">なだらかなルートですが、7kmは体調が悪いと長くツラいものです。実はコース上に1箇所だけお助けポイントがあります！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>なんとか頑張って<strong>4.5km地点の「伏拝（ふしおがみ）王子」（伏拝茶屋）</strong>まで進んでください。</li>
+                                <li>伏拝茶屋で冷たい麦茶や美味しい梅干しを食べて休憩！</li>
+                                <li>これ以上無理だと思ったら、すぐ近くの車道まで歩いてタクシーを呼び出すか、近隣の「伏拝口」バス停から路線バスに乗って、ゴールの本宮大社へワープ移動しましょう！（本宮タクシー：0735-42-0050）</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    promptProblem = "朝の準備がのんびりになってしまい、予定していた08:40のバスに乗り遅れました！";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-bus-simple mr-2"></i>【次のバスの検索 ＆ タクシーワープを検討しよう！】</p>
+                        <p class="text-xs">発心門王子行きのバスは本数が少ないので、1本逃すと大きなタイムロスになっちゃいます。</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>すぐに本宮大社前の案内所で「次の発心門王子行きバス」の時間をチェックします。</li>
+                                <li>もし次のバスまで1時間以上あく場合は、時間の節約のために本宮大社前からスタート地点（発心門王子）まで<strong>タクシー</strong>（約15分、3,000円弱）を使って向かっちゃいましょう！</li>
+                                <li>タクシー代はかかりますが、時間を丸ごと買って気持ちよく古道ウォークを開始できます。</li>
+                            </ol>
+                        </div>
+                    `;
+                }
+            } else if (day === "2-afternoon") {
+                promptTiming = "2日目（7/12）午後：那智・勝浦へ車で移動中";
+                if (type.includes("rain")) {
+                    promptProblem = "雨が強く、那智山や那智の滝を外歩きして観光するのが大変そうです。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-umbrella mr-2"></i>【階段歩きはパス！那智の滝をお手軽ショートカット参拝】</p>
+                        <p class="text-xs">那智大社へのお参りは約470段もの急な雨で濡れた石畳段を登る必要があり、とっても滑って危ないです。</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>那智大社への階段のぼりは一切やめて、車で直接「那智の滝（最寄の有料駐車場）」に向かいます。</li>
+                                <li>駐車場のすぐ近くの鳥居（お滝拝所）からのみ、傘をさして滝を見学。これなら車を降りてわずか徒歩2〜3分で大滝のダイナミックな姿をカメラに収められます！</li>
+                                <li>早めに勝浦港へ進み、16:00過ぎの送迎船に乗ってホテル浦島へチェックイン。館内のいろんな洞窟温泉をゆっくり湯巡りして、雨のビューを特等席から楽しむ方が圧倒的にハッピーです！</li>
+                            </ol>
+                        </div>
+                    `;
+                } else if (type === "sick-mild") {
+                    promptProblem = "午前に7km歩いたので、足腰が悲鳴を上げていて那智大社の石段470段を登る元気がありません。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-heart-pulse mr-2"></i>【那智山の防災裏道路を利用するか、滝だけの観光にチェンジ！】</p>
+                        <p class="text-xs">午前中のハイキングで、思った以上に足がガクガクしているのは自然なことです。決して無理に階段を上らないで！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>どうしても上の那智大社・青岸渡寺にお参りしたい場合、山麓からの徒歩階段を回避して、車で有料の<strong>「防災道路（通行料：約800円）」</strong>を通って本殿のすぐ真横の駐車場まで直接ワープする裏技を使いましょう。</li>
+                                <li>または大社参拝は潔くカットし、歩かずに至至近距離で見られる「那智の滝」のふもと散策だけにしておきます。</li>
+                                <li>ホテル浦島の名物風呂「忘帰洞」の波の音をききながら足を丁寧にセルフマッサージして、明日に備えてねぎらいましょう！</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    promptProblem = "道が混んでいるなどの理由で、勝浦港に16:30に間に合わないかもしれません。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-hourglass-half mr-2"></i>【船は夜まで頻繁に運行しているので、焦らずのんびり進んで！】</p>
+                        <p class="text-xs">送迎船に遅れたら島に渡れない！なんて心配は一切いりません。命を最優先に安全運転を！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>勝浦港 ➔ ホテル浦島の送迎船は、16:30を過ぎても夜間まで頻繁にピストン往復していますので焦らなくて大丈夫。</li>
+                                <li>ただし、遅くなるとバイキングのご飯時間や、夜の広大な洞窟温泉での湯浴み時間が減ってしまうので、那智の滝の散策時間をコンパクトにして17:30までには勝浦港に到着するよう調整しましょう。</li>
+                            </ol>
+                        </div>
+                    `;
+                }
+            } else if (day === "3") {
+                promptTiming = "3日目（7/13）：勝浦 ➔ 新宮・速玉大社 ➔ 帰路";
+                if (type.includes("rain")) {
+                    promptProblem = "雨がけっこう降っていて、速玉大社を歩くのが面倒です。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-cloud-showers-water mr-2"></i>【速玉大社は平地で歩きやすさNo.1！お土産グルメ満喫プランに切り替え】</p>
+                        <p class="text-xs">熊野速玉大社は本宮や那智と違い、階段がほとんどないフラットな敷地なので、雨でもかなり参拝しやすいですよ！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>境内まで駐車場から平坦ですぐ近くなので、傘を差して速玉大社の本殿（美しい朱塗りのカラーは雨の日でも最高に映えます！）をササッと15分程度でお参りします。</li>
+                                <li>参拝後、新宮駅前にある和菓子の超名店（「香梅堂」で名物の絶品「鈴焼」など）をドライブしながら買い漁りましょう！</li>
+                                <li>お昼は、駅近のお店で生まぐろや香ばしい「めはり寿司」を店内でじっくり味わい、電車の乗車時間までおしゃれカフェ等で過ごすのがおすすめです。</li>
+                            </ol>
+                        </div>
+                    `;
+                } else if (type === "sick-mild") {
+                    promptProblem = "2日間の歩行や移動の疲れで、朝から体のだるさや筋肉痛がすごいです。";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-mug-hot mr-2"></i>【速玉大社はさらっと駐車場見学 ➔ 駅前ゆったり待機モード！】</p>
+                        <p class="text-xs">2日間の長距離移動で、体には思った以上に疲労がたまっています。帰りの電車移動（数時間）を元気に乗り切るためにまったりモードへ！</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>速玉大社は無理して広い境内をくまなく歩くのをやめて、鳥居付近の雰囲気を外から眺めるだけにしちゃいます。</li>
+                                <li>11:30の返却をすこし早めてレンタカーを新宮駅前に返し、車から早めに荷物を降ろしてリラックス。</li>
+                                <li>新宮駅の待合室や、近くのレトロな喫茶店に入って、温かい飲み物とめはり寿司をゆっくり食べながら電車を待ちましょう。</li>
+                            </ol>
+                        </div>
+                    `;
+                } else {
+                    promptProblem = "予定が押していて、新宮駅でのレンタカー返却や電車の時間に遅れそうです！";
+                    recommendation = `
+                        <p class="font-bold text-tiffany-accent text-sm"><i class="fa-solid fa-triangle-exclamation mr-2"></i>【速玉大社をカットし、レンタカー返却と切符の確保を大優先！】</p>
+                        <p class="text-xs">新宮駅周辺でレンタカーのガソリン補給、返却チェック、手続きを行うには最低40〜50分前に駅近くに着く必要があります。</p>
+                        <div class="bg-white p-3.5 rounded-2xl border-2 border-tiffany-light my-2 shadow-xs">
+                            <strong class="text-tiffany-accent text-xs">💡 AIがすすめる即効解決ステップ：</strong>
+                            <ol class="list-decimal pl-4 mt-2 space-y-1 text-xs">
+                                <li>もし勝浦を出発したのが10:30を回っているなどの場合、10:15からの速玉大社への立ち寄りは安全のためにパスします。</li>
+                                <li>速玉大社は次回のリベンジの宿題とし、直接新宮のガソリンスタンドとレンタカー店に向かって手続きを完了。</li>
+                                <li>時間がもし余ったら、新宮駅前の売店でお土産や、電車の中で食べるための「めはり寿司弁当」を購入し、車内ランチでお腹を幸せに満たしましょう！</li>
+                            </ol>
+                        </div>
+                    `;
+                }
+            }
+
+            // 自由入力の追加
+            if (details) {
+                recommendation += `
+                    <div class="mt-3 p-3 bg-tiffany-accent/10 border-l-4 border-tiffany-accent rounded-xl text-xs text-tiffany-deep font-bold">
+                        <strong>✏️ 入力された状況へのピンポイント回答：</strong><br>
+                        「${details}」へのアドバイス：決して焦らず、周りの安全なコンビニや道の駅に車を一時停止させて、再度マップアプリやこのしおりの緊急連絡先にアクセスし、状況に応じたタクシー配車や医療機関の確認を優先してください。何よりの安全が一番の思い出です！
+                    </div>
+                `;
+            }
+
+            // HTMLに挿入して表示
+            answerText.innerHTML = recommendation;
+            answerContainer.classList.remove('hidden');
+
+            // プロンプトコピーエリアのカスタマイズ
+            const promptArea = document.getElementById('prompt-area');
+            const customPrompt = `現在、熊野2泊3日旅行の途中で、以下のしおり（ベースプラン）を遂行中です。
+
+【しおり情報】
+1日目: 13:47 新宮駅着、14:00 レンタカー、大斎原、本宮エリア泊
+2日目: 08:30 本宮駐車場 ➔ 08:40 バス ➔ 09:00 発心門王子〜本宮大社ウォーク（7km）、ランチ、13:00 車で那智の滝、14:15 那智の滝参拝、16:30 勝浦・ホテル浦島泊
+3日目: 09:30 出発、10:15 熊野速玉大社、11:30 レンタカー返却・新宮ランチ、午後帰宅
+
+【現在の状況とトラブル】
+現在、旅行の「${promptTiming}」頃です。
+実は、以下のトラブルが発生して困っています。
+「${promptProblem} ${details ? details : ''}」
+
+【AIへの質問】
+このしおりの工程を大きく崩さずに、または最小限の変更で、今からどう動くのが最も安全で楽しめるか、次の具体的なステップを教えてください。周辺の安全な雨宿りスポット、短縮ルート、または代替プランの提案を求みます。`;
+            
+            promptArea.textContent = customPrompt;
+
+            // スクロールして結果へ誘導
+            answerContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // コピー機能（iframeの制限を考慮したフォールバック処理）
+        function copyToClipboard(containerId) {
+            const text = document.getElementById(containerId).textContent;
+            
+            const dummyTextArea = document.createElement('textarea');
+            dummyTextArea.value = text;
+            document.body.appendChild(dummyTextArea);
+            dummyTextArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showToast();
+                } else {
+                    console.error('コピーできませんでした。');
+                }
+            } catch (err) {
+                console.error('コピー中にエラーが発生しました:', err);
+            }
+            document.body.removeChild(dummyTextArea);
+        }
+
+        function showToast() {
+            const toast = document.getElementById('copy-toast');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
